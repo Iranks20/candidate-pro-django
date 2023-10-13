@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿{% load static %}
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -6,7 +7,7 @@
   <!-- Google Web Fonts
   ================================================== -->
 
-  <link href="../../css-1?family=Open+Sans:300,400,600,700,800%7CLato:300,400,700,900" rel="stylesheet">
+  <link href="../../css?family=Open+Sans:300,400,600,700,800%7CLato:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <!-- Basic Page Needs
   ================================================== -->
@@ -26,19 +27,18 @@
   <!-- Vendor CSS
   ============================================ -->
   
-  <link rel="stylesheet" href="font/linea-basic/styles.css">
-  <link rel="stylesheet" href="font/linea-ecommerce/styles.css">
-  <link rel="stylesheet" href="font/linea-arrows/styles.css">
-  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="{% static 'font/linea-basic/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'font/linea-ecommerce/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'font/linea-arrows/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'fancybox/jquery.fancybox.css' %}">
 
   <!-- CSS theme files
   ============================================ -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/fontello.css">
-  <link rel="stylesheet" href="css/owl.carousel.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontello.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
 
         <div class="logo-wrap">
 
-          <a href="index.html" class="logo"><img src="images/logo2.png" alt=""></a>
+          <a href="index.html" class="logo"><img src="{% static 'images/logo2.png' %}" alt=""></a>
 
         </div>
 
@@ -287,7 +287,7 @@
                   
                   <div class="issue-item">
                     
-                    <figure><a href="#"><img src="images/263x180_img1.jpg" alt=""></a></figure>
+                    <figure><a href="#"><img src="{% static 'images/263x180_img1.jpg' %}" alt=""></a></figure>
                     <h5><a href="#">Balancing The Budget</a></h5>
                     <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla.</p>
                     <a href="#" class="info-btn">Read More</a>
@@ -299,7 +299,7 @@
                   
                   <div class="issue-item">
                     
-                    <figure><a href="#"><img src="images/263x180_img2.jpg" alt=""></a></figure>
+                    <figure><a href="#"><img src="{% static 'images/263x180_img2.jpg' %}" alt=""></a></figure>
                     <h5><a href="#">Growing Our Economy</a></h5>
                     <p>Donec porta diam eu massa. Quisque diam lorem, interdum vitae, dapibus ac, scelerisque vitae, pede. Donec eget tellus non.</p>
                     <a href="#" class="info-btn">Read More</a>
@@ -311,7 +311,7 @@
                   
                   <div class="issue-item">
                     
-                    <figure><a href="#"><img src="images/263x180_img3.jpg" alt=""></a></figure>
+                    <figure><a href="#"><img src="{% static 'images/263x180_img3.jpg' %}" alt=""></a></figure>
                     <h5><a href="#">Creating Jobs</a></h5>
                     <p>Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. </p>
                     <a href="#" class="info-btn">Read More</a>
@@ -323,7 +323,7 @@
                   
                   <div class="issue-item">
                     
-                    <figure><a href="#"><img src="images/263x180_img4.jpg" alt=""></a></figure>
+                    <figure><a href="#"><img src="{% static 'images/263x180_img4.jpg' %}" alt=""></a></figure>
                     <h5><a href="#">Protecting Medicare</a></h5>
                     <p>Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod.</p>
                     <a href="#" class="info-btn">Read More</a>
@@ -481,7 +481,7 @@
               
               <div class="widget">
                 
-                <a href="#" class="logo"><img src="images/logo2.png" alt=""></a>
+                <a href="#" class="logo"><img src="{% static 'images/logo2.png' %}" alt=""></a>
                 <p>Adam Russell for Congress <br>
                 PO Box 3740, Austin, TX, 78741</p>
                 <p>Phone: <span>(932) 733-3390</span> <br>
@@ -559,21 +559,7 @@
 
   <!-- JS Libs & Plugins
   ============================================ -->
-  <script src="js/libs/jquery.modernizr.js"></script>
-  <script src="js/libs/jquery-2.2.4.min.js"></script>
-  <script src="js/libs/jquery-ui.min.js"></script>
-  <script src="js/libs/retina.min.js"></script>
-  <script src="plugins/twitter/jquery.tweet.js"></script>
-  <script src="plugins/instafeed.min.js"></script>
-  <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
-  <script src="plugins/jquery.queryloader2.min.js"></script>
-  <script src="plugins/owl.carousel.min.js"></script>
-  <script src="plugins/bootstrap.js"></script>
-
-  <!-- JS theme files
-  ============================================ -->
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+  {% include 'partials/_scripts.html' %}
   
 </body>
 </html>
