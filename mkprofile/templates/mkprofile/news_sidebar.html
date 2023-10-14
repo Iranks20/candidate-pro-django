@@ -1,13 +1,25 @@
-﻿  {% extends 'layout/app.html' %}
-  {% load i18n %}
+﻿{% extends 'layout/events_app.html' %}
+{% load i18n %}
 
-  {% load static %}
+{% load static %}
 
-  {% block content %}
-
+{% block content %}
+      
       <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
 
-      <div class="breadcrumbs-wrap with-bg2">
+      <div class="breadcrumbs-wrap with-bg">
+
+        <div class="container">
+          
+          <h1 class="page-title">RECENT NEWS</h1>
+
+          <ul class="breadcrumbs">
+
+            <li><a href="index.html">Home</a></li>
+            <li>News With Sidebar</li>
+
+          </ul>
+
         </div>
 
       </div>
@@ -15,17 +27,9 @@
       <!-- - - - - - - - - - - - - end Breadcrumbs - - - - - - - - - - - - - - - -->
 
       <div class="page-content-wrap">
-        <div class="breadcrumbs-wrap">
-
-          <div class="container">
-            
-            <h1 class="page-title" style="color: black;">Recent News</h1>
-  
-          </div>
-  
-        </div>
         
-        <div class="container">         
+        <div class="container">
+          
           <div class="row">
             <main id="main" class="col-md-8 col-sm-12">
               
@@ -34,7 +38,7 @@
                 <div class="event-item">
                   <div class="entry-attachment">
 
-                    <img src="{% static 'images/750x450_img1.jpg' %}" alt="">
+                    <img src="images/750x450_img1.jpg" alt="">
 
                   </div>
                   <div class="event-date">
@@ -61,11 +65,11 @@
                     <div class="carousel-type-2 type-2">
                       <div class="owl-carousel" data-max-items="1">
                         
-                        <div class="owl-item"><img src="{% static 'images/750x450_img2.jpg' %}" alt=""></div>
+                        <div class="owl-item"><img src="images/750x450_img2.jpg" alt=""></div>
 
-                        <div class="owl-item"><img src="{% static 'images/750x450_img3.jpg' %}" alt=""></div>
+                        <div class="owl-item"><img src="images/750x450_img3.jpg" alt=""></div>
 
-                        <div class="owl-item"><img src="{% static 'images/750x450_img4.jpg' %}" alt=""></div>
+                        <div class="owl-item"><img src="images/750x450_img4.jpg" alt=""></div>
                       
                       </div>
                     </div>
@@ -659,5 +663,4 @@
 
       </div>
 
-  {% endblock %}
-  
+{% endblock %}

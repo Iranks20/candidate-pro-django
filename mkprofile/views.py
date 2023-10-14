@@ -19,3 +19,7 @@ def checkout(request):
     return render(request, 'mkprofile/checkout.html')
 def myAccount(request):
     return render(request, 'mkprofile/my_account.html')
+def join(request):
+    return render(request, 'mkprofile/get_involved.html')
+def contact(request):
+    return render(request, 'mkprofile/contact.html')
