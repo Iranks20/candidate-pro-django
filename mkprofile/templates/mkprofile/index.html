@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block content %}
-
-  <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}">
+ 
+  <!-- <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}">
     
     <div class="media-inner left-side">
         
@@ -28,8 +28,46 @@
 
     </div>
 
-  </div>
+  </div> -->
 
+{% for campaign in campaigns %}
+  <!-- <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}"> -->
+    <div class="media-holder full-src" data-bg="{{ campaign.background_image.url }}">
+      <div class="media-inner left-side">
+        
+      <h1>{{ campaign.title }} <br>
+      <span>{{ campaign.subtitle }}</span></h1>
+
+      <p>{{ campaign.description }}</p>
+
+      <div class="join-us">
+    
+        <form id="newsletter2" class="join-form">
+          <button type="submit" class="btn btn-style-4 btn-big f-right" data-type="submit">Sign Up</button>
+          <div class="input-holder">
+            <input type="email" name="newsletter-email" placeholder="Email address">
+            <input type="text" placeholder="Zip code">
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+{% endfor %}
+
+
+  <!-- <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}">
+    <div class="media-inner left-side">
+      {% for campaign in campaigns %}
+        <h1>{{ campaign.title }}</h1>
+        <p>{{ campaign.description }}</p>
+        <img src="{{ campaign.image.url }}" alt="{{ campaign.title }}">
+      {% endfor %}
+    </div>
+  </div> -->
+  
   <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
 
   <div id="content">

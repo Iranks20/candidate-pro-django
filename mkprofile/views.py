@@ -1,5 +1,6 @@
 
 from django.shortcuts import render
+from .models import Campaign
 
 def index(request):
     return render(request, 'mkprofile/index.html')
@@ -23,3 +24,8 @@ def join(request):
     return render(request, 'mkprofile/get_involved.html')
 def contact(request):
     return render(request, 'mkprofile/contact.html')
+
+# data for index.html
+def index(request):
+    campaigns = Campaign.objects.all()
+    return render(request, 'mkprofile/index.html', {'campaigns': campaigns})
