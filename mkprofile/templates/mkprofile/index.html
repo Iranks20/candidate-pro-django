@@ -5,35 +5,10 @@
 
 {% block content %}
  
-  <!-- <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}">
-    
-    <div class="media-inner left-side">
-        
-      <h1>Together, We Will Move <br>
-      <span>Texas Forward!</span></h1>
-
-      <p>Become a part of our team, sign up for updates.</p>
-
-      <div class="join-us">
-    
-        <form id="newsletter2" class="join-form">
-          <button type="submit" class="btn btn-style-4 btn-big f-right" data-type="submit">Sign Up</button>
-          <div class="input-holder">
-            <input type="email" name="newsletter-email" placeholder="Email address">
-            <input type="text" placeholder="Zip code">
-          </div>
-        </form>
-
-      </div>
-
-    </div>
-
-  </div> -->
 
 {% for campaign in campaigns %}
-  <!-- <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}"> -->
-    <div class="media-holder full-src" data-bg="{{ campaign.background_image.url }}">
-      <div class="media-inner left-side">
+  <div class="media-holder full-src" data-bg="{{ campaign.background_image.url }}">
+    <div class="media-inner left-side">
         
       <h1>{{ campaign.title }} <br>
       <span>{{ campaign.subtitle }}</span></h1>
@@ -56,17 +31,6 @@
 
   </div>
 {% endfor %}
-
-
-  <!-- <div class="media-holder full-src" data-bg="{% static 'images/1920x1050_bg1.jpg' %}">
-    <div class="media-inner left-side">
-      {% for campaign in campaigns %}
-        <h1>{{ campaign.title }}</h1>
-        <p>{{ campaign.description }}</p>
-        <img src="{{ campaign.image.url }}" alt="{{ campaign.title }}">
-      {% endfor %}
-    </div>
-  </div> -->
   
   <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
 
@@ -133,80 +97,41 @@
     <div class="page-section">
       
       <div class="container">
-        
-        <div class="title-holder align-center">
+        {% for prior in priorities %}
+          
+          <div class="title-holder align-center">
 
-          <h2 class="section-title">Adam's Priorities</h2>
-          <p class="text-size-big">Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod  <br> consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. </p>
+            <h2 class="section-title">{{ prior.title }}</h2>
+            <p class="text-size-big">{{ prior.title_description }}</p>
 
-        </div>
+          </div>
+        {% endfor %}
         
         <div class="carousel-type-2">
-          <div class="owl-carousel content-element2" data-max-items="4" data-item-margin="30">
+          
+            <div class="owl-carousel content-element2" data-max-items="4" data-item-margin="30">
+              {% for priorityexample in priorityexamples  %}
+              <!-- Carousel Item -->
+              <div class="item-carousel">
+                
+                <div class="issue-item">
+                  
+                  <figure><a href="#"><img src="{{ priorityexample.priorities_image.url }}" alt=""></a></figure>
+
+                  <h5><a href="#">{{ priorityexample.priorities_heading }}</a></h5>
+                  <p>{{ priorityexample.priorities_description }}</p>
+                  <a href="#" class="info-btn">Read More</a>
+
+                </div>
+
+              </div>
+              {% endfor %}
+            </div>
             
-            <!-- Carousel Item -->
-            <div class="item-carousel">
-              
-              <div class="issue-item">
-                
-                <figure><a href="#"><img src="{% static 'images/263x180_img1.jpg' %}" alt=""></a></figure>
-
-                <h5><a href="#">Balancing The Budget</a></h5>
-                <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla.</p>
-                <a href="#" class="info-btn">Read More</a>
-
-              </div>
-
-            </div>
-
-            <!-- Carousel Item -->
-            <div class="item-carousel">
-              
-              <div class="issue-item">
-                
-                <figure><a href="#"><img src="{% static 'images/263x180_img2.jpg' %}" alt=""></a></figure>
-                <h5><a href="#">Growing Our Economy</a></h5>
-                <p>Donec porta diam eu massa. Quisque diam lorem, interdum vitae, dapibus ac, scelerisque vitae, pede. Donec eget tellus non.</p>
-                <a href="#" class="info-btn">Read More</a>
-
-              </div>
-
-            </div>
-
-            <!-- Carousel Item -->
-            <div class="item-carousel">
-              
-              <div class="issue-item">
-                
-                <figure><a href="#"><img src="{% static 'images/263x180_img3.jpg' %}" alt=""></a></figure>
-                <h5><a href="#">Creating Jobs</a></h5>
-                <p>Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. </p>
-                <a href="#" class="info-btn">Read More</a>
-
-              </div>
-
-            </div>
-
-            <!-- Carousel Item -->
-            <div class="item-carousel">
-              
-              <div class="issue-item">
-                
-                <figure><a href="#"><img src="{% static 'images/263x180_img4.jpg' %}" alt=""></a></figure>
-                <h5><a href="#">Protecting Medicare</a></h5>
-                <p>Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod.</p>
-                <a href="#" class="info-btn">Read More</a>
-
-              </div>
-
-            </div>
-
-          </div>
           <div class="align-center">
-            <a href="#" class="btn">See All Issues</a>
+            <a href="{% url 'issues' %}" class="btn">See All Issues</a>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -381,15 +306,16 @@
       </div>
 
     </div>
-
-    <div class="page-section with-bg-img" data-bg="{% static 'images/1920x618_bg1.jpg' %}">
+    
+    {% for meeting in meet %}
+    <div class="page-section with-bg-img" data-bg="{{ meeting.meet_image.url }}">
       <div class="container">
         
         <div class="row">
           <div class="col-sm-5">
             
-            <h2 class="section-title">Meet Adam</h2>
-            <p class="text-size-big">Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum.</p>
+            <h2 class="section-title">{{ meeting.meet_name }}</h2>
+            <p class="text-size-big">{{ meeting.meet_description }}</p>
             <a href="#" class="btn btn-style-3">Read More</a>
 
           </div>
@@ -397,11 +323,12 @@
 
       </div>
     </div>
+    {% endfor %}
 
     <div class="page-section">
       <div class="container">
 
-        <h2 class="section-title align-center">Why We Support Adam</h2>
+        <h2 class="section-title align-center">Why We Support MK</h2>
         
         <!-- - - - - - - - - - - - - Owl-Carousel - - - - - - - - - - - - - - - -->
 
@@ -409,106 +336,40 @@
 
           <div class="owl-carousel content-element2" data-max-items="1" data-autoplay="true">
 
-            <!-- Slide -->                  
-            <div class="item-carousel">
-              <!-- Carousel Item -->                  
-              <!-- - - - - - - - - - - - - - Testimonial - - - - - - - - - - - - - - - - -->
-              <div class="testimonial testimonial-single">
+            <!-- Slide --> 
+            {% for testimonial in testimonials %}                 
+              <div class="item-carousel">
+                <!-- Carousel Item -->                  
+                <!-- - - - - - - - - - - - - - Testimonial - - - - - - - - - - - - - - - - -->
+                <div class="testimonial testimonial-single">
 
-                <div class="author-box">
+                  <div class="author-box">
 
-                  <a href="#" class="avatar">
-                    <img src="{% static 'images/263x263_photo1.jpg' %}" alt="">
-                  </a>
+                    <a href="#" class="avatar">
+                      <img src="{{ testimonial.testimonial_image.url }}" alt="">
+                    </a>
 
-                </div>
-                
-                <div class="testimonial-holder">
+                  </div>
+                  
+                  <div class="testimonial-holder">
 
-                  <blockquote>
-                    <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.</p>
-                  </blockquote>
+                    <blockquote>
+                      <p>{{ testimonial.testimonial_description }}</p>
+                    </blockquote>
 
-                  <div class="author-info">
+                    <div class="author-info">
 
-                    <h6 class="author-name">Marta Healy</h6>
-                    <span class="author-position">Congresswoman</span>
+                      <h6 class="author-name">{{ testimonial.testimonial_name }}</h6>
+                      <span class="author-position">{{ testimonial.testimonial_residence }}</span>
+
+                    </div>
 
                   </div>
 
-                </div>
-
+                </div>             
+                <!-- /Carousel Item --> 
               </div>
-              <!-- /Carousel Item --> 
-            </div>
-            <!-- /Slide -->
-
-            <!-- Slide -->                  
-            <div class="item-carousel">
-              <!-- Carousel Item -->                  
-              <!-- - - - - - - - - - - - - - Testimonial - - - - - - - - - - - - - - - - -->
-              <div class="testimonial testimonial-single">
-
-                <div class="author-box">
-
-                  <a href="#" class="avatar">
-                    <img src="{% static 'images/263x263_photo1.jpg' %}" alt="">
-                  </a>
-
-                </div>
-                
-                <div class="testimonial-holder">
-
-                  <blockquote>
-                    <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.</p>
-                  </blockquote>
-
-                  <div class="author-info">
-
-                    <h6 class="author-name">Marta Healy</h6>
-                    <span class="author-position">Congresswoman</span>
-
-                  </div>
-
-                </div>
-
-              </div>
-              <!-- /Carousel Item --> 
-            </div>
-            <!-- /Slide -->
-
-            <!-- Slide -->                  
-            <div class="item-carousel">
-              <!-- Carousel Item -->                  
-              <!-- - - - - - - - - - - - - - Testimonial - - - - - - - - - - - - - - - - -->
-              <div class="testimonial testimonial-single">
-
-                <div class="author-box">
-
-                  <a href="#" class="avatar">
-                    <img src="{% static 'images/263x263_photo1.jpg' %}" alt="">
-                  </a>
-
-                </div>
-                
-                <div class="testimonial-holder">
-
-                  <blockquote>
-                    <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.</p>
-                  </blockquote>
-
-                  <div class="author-info">
-
-                    <h6 class="author-name">Marta Healy</h6>
-                    <span class="author-position">Congresswoman</span>
-
-                  </div>
-
-                </div>
-
-              </div>
-              <!-- /Carousel Item --> 
-            </div>
+            {% endfor %}
             <!-- /Slide -->
 
           </div>
@@ -532,8 +393,9 @@
         <div class="carousel-type-2">
 
           <div class="owl-carousel content-element2" data-max-items="4" data-item-margin="30">
-
-            <!-- Slide -->                  
+            
+            <!-- Slide -->
+            {% for product in products %}               
             <div class="item-carousel">
               <!-- Carousel Item -->                  
               <!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
@@ -541,7 +403,7 @@
                       
                 <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
                 <div class="product-image">
-                  <a href="#"><img src="{% static 'images/263x263_img1.jpg' %}" alt=""></a>
+                  <a href="#"><img src="{{ product.product_image.url }}" alt=""></a>
                   <div class="overlay">
                     <div class="overlay-inner">
                       <a href="#" class="btn btn-style-6 btn-small">Add To Cart</a>
@@ -553,41 +415,9 @@
                 <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
                 <div class="product-description">
 
-                  <h5 class="product-name"><a href="#">Cotton Tote Bag White</a></h5>
+                  <h5 class="product-name"><a href="#">{{ product.product_name }}</a></h5>
 
-                  <div class="product-price new-price">$35.00</div>
-
-                </div>
-                <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
-
-              </div>
-              <!-- /Carousel Item --> 
-            </div>
-            <!-- /Slide -->
-
-            <!-- Slide -->                  
-            <div class="item-carousel">
-              <!-- Carousel Item -->                  
-              <!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-              <div class="product">
-                      
-                <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
-                <div class="product-image">
-                  <a href="#"><img src="{% static 'images/263x263_img2.jpg' %}" alt=""></a>
-                  <div class="overlay">
-                    <div class="overlay-inner">
-                      <a href="#" class="btn btn-style-6 btn-small">Add To Cart</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- - - - - - - - - - - - - - End of Product Image - - - - - - - - - - - - - - - - -->
-
-                <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
-                <div class="product-description">
-
-                  <h5 class="product-name"><a href="#">Men’s T-shirt White</a></h5>
-
-                  <div class="product-price new-price">$25.00</div>
+                  <div class="product-price new-price">{{ product.product_price }}</div>
 
                 </div>
                 <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
@@ -595,76 +425,12 @@
               </div>
               <!-- /Carousel Item --> 
             </div>
+            {% endfor %}
             <!-- /Slide -->
-
-            <!-- Slide -->                  
-            <div class="item-carousel">
-              <!-- Carousel Item -->                  
-              <!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-              <div class="product">
-                      
-                <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
-                <div class="product-image">
-                  <a href="#"><img src="{% static 'images/263x263_img3.jpg' %}" alt=""></a>
-                  <div class="overlay">
-                    <div class="overlay-inner">
-                      <a href="#" class="btn btn-style-6 btn-small">Add To Cart</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- - - - - - - - - - - - - - End of Product Image - - - - - - - - - - - - - - - - -->
-
-                <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
-                <div class="product-description">
-
-                  <h5 class="product-name"><a href="#">Morning Mug White</a></h5>
-
-                  <div class="product-price new-price">$30.00</div>
-
-                </div>
-                <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
-
-              </div>
-              <!-- /Carousel Item --> 
-            </div>
-            <!-- /Slide -->
-
-            <!-- Slide -->                  
-            <div class="item-carousel">
-              <!-- Carousel Item -->                  
-              <!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-              <div class="product">
-                      
-                <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
-                <div class="product-image">
-                  <a href="#"><img src="{% static 'images/263x263_img4.jpg' %}" alt=""></a>
-                  <div class="overlay">
-                    <div class="overlay-inner">
-                      <a href="#" class="btn btn-style-6 btn-small">Add To Cart</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- - - - - - - - - - - - - - End of Product Image - - - - - - - - - - - - - - - - -->
-
-                <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
-                <div class="product-description">
-
-                  <h5 class="product-name"><a href="#">Baseball Cap Gray</a></h5>
-
-                  <div class="product-price new-price">$15.00</div>
-
-                </div>
-                <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
-
-              </div>
-              <!-- /Carousel Item --> 
-            </div>
-            <!-- /Slide -->
-
           </div>
 
           <div class="align-center">
-            <a href="#" class="btn">More Products</a>
+            <a href="{% url 'productCategory' %}" class="btn">More Products</a>
           </div>
 
         </div>

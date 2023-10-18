@@ -1,6 +1,11 @@
 
 from django.shortcuts import render
 from .models import Campaign
+from .models import Priorities
+from .models import priorityExamples
+from .models import Meet
+from .models import Testimonials
+from .models import Products
 
 def index(request):
     return render(request, 'mkprofile/index.html')
@@ -28,4 +33,25 @@ def contact(request):
 # data for index.html
 def index(request):
     campaigns = Campaign.objects.all()
-    return render(request, 'mkprofile/index.html', {'campaigns': campaigns})
+    priorities = Priorities.objects.all()
+    priorityexamples = priorityExamples.objects.all()
+    meet = Meet.objects.all()
+    testimonials = Testimonials.objects.all()
+    products = Products.objects.all()
+
+    return render(request, 'mkprofile/index.html', {
+    'campaigns': campaigns,
+    'priorities': priorities,
+    'priorityexamples': priorityexamples,
+    'meet': meet,
+    'testimonials': testimonials,
+    'products': products
+    })
+
+# data for issues.html
+def issues(request):
+    priorityexamples = priorityExamples.objects.all()
+
+    return render(request, 'mkprofile/issues.html', {
+    'priorityexamples': priorityexamples,
+    })
