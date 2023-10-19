@@ -1,6 +1,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import redirect
 
 from .models import Campaign
 from .models import Priorities
@@ -63,7 +64,6 @@ def issues(request):
 # registering joining user
 def signup(request):
     if request.method == 'POST':
-        print(request.POST)
         # Retrieve form data
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -72,16 +72,30 @@ def signup(request):
         address = request.POST.get('address', '')
         city = request.POST.get('city', '')
         zip_code = request.POST.get('zip_code')
-
-        # Retrieve a list of activities that the user selected
-        activities = request.POST.getlist('activities')
-
-        # Join the activities list into a single string
-        activities = ', '.join(activities)
-
-        # Retrieve user comments
+        
+        # Collect all checked checkboxes
+        checked_boxes = []
+        for i in range(1, 7):
+            checkbox_name = f'checkbox-{i}'
+            if checkbox_name in request.POST:
+                checked_boxes.append(request.POST[checkbox_name])
+        
+        # Join the checked checkboxes with a separator (e.g., comma)
+        checkboxes = ', '.join(checked_boxes)
+        
         comments = request.POST.get('comments', '')
-       
+
+        # Print the data to the console for verification
+        print("First Name:", first_name)
+        print("Last Name:", last_name)
+        print("Email:", email)
+        print("Phone Number:", phone_number)
+        print("Address:", address)
+        print("City:", city)
+        print("Zip Code:", zip_code)
+        print("Checked Checkboxes:", checkboxes)
+        print("Comments:", comments)
+
         # Create a new UserProfile object and save it to the database
         UserProfile.objects.create(
             first_name=first_name,
@@ -91,11 +105,11 @@ def signup(request):
             address=address,
             city=city,
             zip_code=zip_code,
-            activities=activities,
+            checkboxes=checkboxes,
             comments=comments
         )
 
-        # You can add a success page or redirect to the homepage after registration
-        return redirect('join.html')
+        # You can redirect to a success page or simply redirect back to the 'join' page
+        return redirect('join')
 
     return render(request, 'join.html')

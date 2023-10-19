@@ -39,7 +39,7 @@
                 <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla. Fields marked with an * are required.</p>
 
               </div>
-              <form method="post" action="{% url 'join' %}">
+              <form method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
                 <div class="row flex-row">
                     <div class="col-sm-6">
@@ -51,7 +51,6 @@
                         <input type="text" name="last_name">
                     </div>
                 </div>
-            
                 <div class="row flex-row">
                     <div class="col-sm-6">
                         <label class="required">Email address</label>
@@ -62,14 +61,12 @@
                         <input type="text" name="phone_number">
                     </div>
                 </div>
-            
                 <div class="row flex-row">
                     <div class="col-sm-12">
                         <label>Address</label>
                         <input type="text" name="address">
                     </div>
                 </div>
-            
                 <div class="row flex-row">
                     <div class="col-sm-8">
                         <label>City</label>
@@ -80,46 +77,42 @@
                         <input type="text" name="zip_code">
                     </div>
                 </div>
-            
                 <div class="row flex-row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <label class="required">How would you like to help out?</label>
                         <div class="input-wrapper">
-                            <input type="checkbox" name="activities" id="checkbox-1" value="Knock doors">
-                            <label for="checkbox-1">Knock doors</label>
+                            <input type="checkbox" name="checkbox-1" id="checkbox-1">
+                            <label for="checkbox-1" value="Knock doors">Knock doors</label>
                         </div>
                         <div class="input-wrapper">
-                            <input type="checkbox" name="activities" id="checkbox-2" value="Write letters to the editor">
-                            <label for="checkbox-2">Write letters to the editor</label>
+                            <input type="checkbox" name="checkbox-2" id="checkbox-2" checked>
+                            <label for="checkbox-2"  value="Write letters to the editor">Write letters to the editor</label>
                         </div>
                         <div class="input-wrapper">
-                            <input type="checkbox" name="activities" id="checkbox-3" value="Work at HQ">
-                            <label for="checkbox-3">Work at HQ</label>
+                            <input type="checkbox" name="checkbox-3" id="checkbox-3">
+                            <label for="checkbox-3" value="work at HQ">Work at HQ</label>
                         </div>
                         <div class="input-wrapper">
-                            <input type="checkbox" name="activities" id="checkbox-4" value="Make phone calls">
-                            <label for "checkbox-4">Make phone calls</label>
+                            <input type="checkbox" name="checkbox-4" id="checkbox-4">
+                            <label for="checkbox-4" value="make phone calls">Make phone calls</label>
                         </div>
                         <div class="input-wrapper">
-                            <input type="checkbox" name="activities" id="checkbox-5" value="Host a Fundraiser">
-                            <label for="checkbox-5">Host a Fundraiser</label>
+                            <input type="checkbox" name="checkbox-5" id="checkbox-5">
+                            <label for="checkbox-5" value="host a fundraiser">Host a Fundraiser</label>
                         </div>
                         <div class="input-wrapper">
-                            <input type="checkbox" name="activities" id="checkbox-6" value="Other">
-                            <label for="checkbox-6">Other</label>
+                            <input type="checkbox" name="checkbox-6" id="checkbox-6">
+                            <label for="checkbox-6" value="Other">Other</label>
                         </div>
                     </div>
-                </div>
-            
-                <div class="row flex-row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <label>Let us know any other comments you have!</label>
                         <textarea rows="9" name="comments"></textarea>
                     </div>
                 </div>
-            
                 <button type="submit" class="btn btn-style-4 btn-big">Sign Up</button>
             </form>
+            
             
 
               <div class="share-wrap style-2">

@@ -16,8 +16,8 @@ admin.site.register(Testimonials)
 admin.site.register(Products)
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'phone_number', 'zip_code')
-    list_filter = ('zip_code', 'activities')
+    list_display = ('first_name', 'last_name', 'email', 'phone_number', 'address', 'city', 'zip_code', 'checkboxes', 'comments')
+    list_filter = ('zip_code', 'checkboxes')
     search_fields = ('first_name', 'last_name', 'email')
 
 admin.site.register(UserProfile, UserProfileAdmin)

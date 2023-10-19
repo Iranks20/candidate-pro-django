@@ -16,6 +16,7 @@ urlpatterns = [
     path('myaccount/', views.myAccount, name='myAccount'),
     path('join/', views.join, name='join'),
     path('contact/', views.contact, name='contact'),
+    path('signup/', views.signup, name='signup'),
 
 
 ]
