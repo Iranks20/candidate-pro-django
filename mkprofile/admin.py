@@ -5,6 +5,7 @@ from .models import priorityExamples
 from .models import Meet
 from .models import Testimonials
 from .models import Products
+from .models import UserProfile
 
 
 admin.site.register(Campaign)
@@ -14,3 +15,9 @@ admin.site.register(Meet)
 admin.site.register(Testimonials)
 admin.site.register(Products)
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'email', 'phone_number', 'zip_code')
+    list_filter = ('zip_code', 'activities')
+    search_fields = ('first_name', 'last_name', 'email')
+
+admin.site.register(UserProfile, UserProfileAdmin)

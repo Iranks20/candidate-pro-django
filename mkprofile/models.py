@@ -54,3 +54,18 @@ class Products(models.Model):
     def __str__(self):
         return self.product_name
 
+# registering a user joining
+class UserProfile(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15, blank=True)
+    address = models.TextField(blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    zip_code = models.CharField(max_length=10)
+    activities = models.CharField(max_length=200, blank=True)
+    comments = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
