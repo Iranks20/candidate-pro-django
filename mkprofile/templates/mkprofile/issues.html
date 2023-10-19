@@ -35,54 +35,18 @@
             <div class="issues-container">
               
               <div class="row flex-row">
-                <div class="col-md-3 col-xs-6">
-                  
+                {% for priorityexample in priorityexamples  %}
+                <div class="col-md-3 col-xs-6">                 
                   <div class="issue-item">
                     
-                    <figure><a href="#"><img src="{% static 'images/263x180_img1.jpg' %}" alt=""></a></figure>
-                    <h5><a href="#">Balancing The Budget</a></h5>
-                    <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla.</p>
+                    <figure><a href="#"><img src="{{ priorityexample.priorities_image.url }}" alt=""></a></figure>
+                    <h5><a href="#">{{ priorityexample.priorities_heading }}</a></h5>
+                    <p>{{ priorityexample.priorities_description }}</p>
                     <a href="#" class="info-btn">Read More</a>
 
                   </div>
-
                 </div>
-                <div class="col-md-3 col-xs-6">
-                  
-                  <div class="issue-item">
-                    
-                    <figure><a href="#"><img src="{% static 'images/263x180_img2.jpg' %}" alt=""></a></figure>
-                    <h5><a href="#">Growing Our Economy</a></h5>
-                    <p>Donec porta diam eu massa. Quisque diam lorem, interdum vitae, dapibus ac, scelerisque vitae, pede. Donec eget tellus non.</p>
-                    <a href="#" class="info-btn">Read More</a>
-
-                  </div>
-
-                </div>
-                <div class="col-md-3 col-xs-6">
-                  
-                  <div class="issue-item">
-                    
-                    <figure><a href="#"><img src="{% static 'images/263x180_img3.jpg' %}" alt=""></a></figure>
-                    <h5><a href="#">Creating Jobs</a></h5>
-                    <p>Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. </p>
-                    <a href="#" class="info-btn">Read More</a>
-
-                  </div>
-
-                </div>
-                <div class="col-md-3 col-xs-6">
-                  
-                  <div class="issue-item">
-                    
-                    <figure><a href="#"><img src="{% static 'images/263x180_img4.jpg' %}" alt=""></a></figure>
-                    <h5><a href="#">Protecting Medicare</a></h5>
-                    <p>Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod.</p>
-                    <a href="#" class="info-btn">Read More</a>
-
-                  </div>
-
-                </div>
+                {% endfor %}
               </div>
 
             </div>
