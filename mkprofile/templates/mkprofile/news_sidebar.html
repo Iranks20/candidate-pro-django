@@ -34,64 +34,30 @@
             <main id="main" class="col-md-8 col-sm-12">
               
               <div class="events-holder">
-                
+                {% for entry in news_entries %}
                 <div class="event-item">
                   <div class="entry-attachment">
-
-                    <img src="images/750x450_img1.jpg" alt="">
-
-                  </div>
+                    {% if entry.image %}
+                        <img src="{{ entry.image.url }}" alt="{{ entry.title }}">
+                    {% elif entry.iframe %}
+                        <div class="responsive-iframe">
+                            <iframe src="{{ entry.iframe }}"></iframe>
+                        </div>
+                    {% endif %}
+                </div>
                   <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">25</div>
+                    <div class="event-month">{{ entry.date|date:"M" }}</div>
+                    <div class="event-day">{{ entry.date|date:"d" }}</div>
                   </div>
                   <div class="event-info">
-                    <h4 class="event-link"><span class="label">Featured</span><a href="#">Nam Elit Agna, Endrerit Sit Amet, Tincidunt</a></h4>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">0 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> News</a></span>
-
-                    </div>
-                    <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae, dapibus ac, scelerisque vitae, pede. </p>
+                    <h4 class="event-link"><span class="label">Featured</span><a href="#">{{ entry.title }}</a></h4>
+                    <p>{{ entry.content }}</p>
                     <a href="#" class="info-btn">Read More</a>
                   </div>
                 </div>
+                {% empty %}
+                {% endfor %}
 
-                <div class="event-item">
-                  <div class="entry-attachment">
-
-                    <div class="carousel-type-2 type-2">
-                      <div class="owl-carousel" data-max-items="1">
-                        
-                        <div class="owl-item"><img src="images/750x450_img2.jpg" alt=""></div>
-
-                        <div class="owl-item"><img src="images/750x450_img3.jpg" alt=""></div>
-
-                        <div class="owl-item"><img src="images/750x450_img4.jpg" alt=""></div>
-                      
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">22</div>
-                  </div>
-                  <div class="event-info">
-                    <h4 class="event-link"><a href="#">Donec Porta Diam Eu Massa</a></h4>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">3 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> Government</a></span>
-
-                    </div>
-                    <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae, dapibus ac, scelerisque vitae, pede. </p>
-                    <a href="#" class="info-btn">Read More</a>
-                  </div>
-                </div>
 
                 <div class="event-item">
                   <div class="event-date">
@@ -244,6 +210,7 @@
                     <a href="#" class="info-btn">Read More</a>
                   </div>
                 </div>
+                <h>hey you hw are you</h>
 
               </div>
 

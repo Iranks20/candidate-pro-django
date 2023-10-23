@@ -10,6 +10,8 @@ from .models import Meet
 from .models import Testimonials
 from .models import Products
 from .models import UserProfile
+from django.views.generic import ListView
+from .models import News
 
 
 def index(request):
@@ -85,17 +87,6 @@ def signup(request):
         
         comments = request.POST.get('comments', '')
 
-        # Print the data to the console for verification
-        print("First Name:", first_name)
-        print("Last Name:", last_name)
-        print("Email:", email)
-        print("Phone Number:", phone_number)
-        print("Address:", address)
-        print("City:", city)
-        print("Zip Code:", zip_code)
-        print("Checked Checkboxes:", checkboxes)
-        print("Comments:", comments)
-
         # Create a new UserProfile object and save it to the database
         UserProfile.objects.create(
             first_name=first_name,
@@ -113,3 +104,7 @@ def signup(request):
         return redirect('join')
 
     return render(request, 'join.html')
+
+def news(request):
+    news_entries = News.objects.all()
+    return render(request, 'mkprofile/news_sidebar.html', {'news_entries': news_entries})

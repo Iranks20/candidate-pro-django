@@ -69,3 +69,14 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+# news
+class News(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    date = models.DateField()
+    image = models.ImageField(upload_to='news_images/', blank=True, null=True)
+    iframe = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
