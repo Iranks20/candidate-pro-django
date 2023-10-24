@@ -8,7 +8,6 @@ from .models import Products
 from .models import UserProfile
 from .models import News
 
-
 admin.site.register(Campaign)
 admin.site.register(Priorities)
 admin.site.register(priorityExamples)

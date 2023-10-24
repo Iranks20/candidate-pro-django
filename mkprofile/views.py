@@ -105,6 +105,12 @@ def signup(request):
 
     return render(request, 'join.html')
 
+# news
 def news(request):
     news_entries = News.objects.all()
     return render(request, 'mkprofile/news_sidebar.html', {'news_entries': news_entries})
+
+# products
+def productCategory(request):
+    product_categories = Products.objects.all()
+    return render(request, 'mkprofile/category_page.html', {'product_categories': product_categories})

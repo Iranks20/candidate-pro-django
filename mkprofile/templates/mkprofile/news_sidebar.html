@@ -37,181 +37,31 @@
                 {% for entry in news_entries %}
                 <div class="event-item">
                   <div class="entry-attachment">
-                    {% if entry.image %}
-                        <img src="{{ entry.image.url }}" alt="{{ entry.title }}">
-                    {% elif entry.iframe %}
+                    {% if entry.vimeo %}
                         <div class="responsive-iframe">
-                            <iframe src="{{ entry.iframe }}"></iframe>
+                          <iframe src="{{ entry.vimeo }}?title=0&byline=0&portrait=0&color=dedede" allowfullscreen=""></iframe>
                         </div>
+                    {% elif entry.youtube_url %}
+                        <div class="responsive-iframe">
+                            <iframe src="{{ entry.youtube_url }}"></iframe>
+                        </div>
+                    {% elif entry.image %}
+                        <img src="{{ entry.image.url }}" alt="{{ entry.title }}">
                     {% endif %}
                 </div>
+                
                   <div class="event-date">
                     <div class="event-month">{{ entry.date|date:"M" }}</div>
                     <div class="event-day">{{ entry.date|date:"d" }}</div>
                   </div>
                   <div class="event-info">
-                    <h4 class="event-link"><span class="label">Featured</span><a href="#">{{ entry.title }}</a></h4>
+                    <h4 class="event-link"><a href="#">{{ entry.title }}</a></h4>
                     <p>{{ entry.content }}</p>
                     <a href="#" class="info-btn">Read More</a>
                   </div>
                 </div>
                 {% empty %}
                 {% endfor %}
-
-
-                <div class="event-item">
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">19</div>
-                  </div>
-                  <div class="event-info">
-                    <header>
-                      <div class="blockquote-holder with-bg">
-                        <blockquote>
-                          <p>“Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna.”</p>
-                          <div class="author">Marta Healy</div>
-                          <div class="author-status">Congresswoman</div>
-                        </blockquote>
-                      </div>
-                    </header>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">12 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> Election</a></span>
-
-                    </div>
-                  </div>
-                </div>
-
-                <div class="event-item">
-                  <div class="entry-attachment">
-
-                    <div class="responsive-iframe">
-                        
-                      <iframe src="https://www.youtube.com/embed/n9BsWhjX1Fw?rel=0&showinfo=0&autohide=2&controls=0&playlist=J2Y_ld0KL-4&enablejsapi=1"></iframe>
-
-                    </div>
-
-                  </div>
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">11</div>
-                  </div>
-                  <div class="event-info">
-                    <h4 class="event-link"><a href="#">Neque Porro Quisquam Est Qui Dolorem Ipsum</a></h4>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">6 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> Press, Campaign</a></span>
-
-                    </div>
-                    <p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. </p>
-                    <a href="#" class="info-btn">Read More</a>
-                  </div>
-                </div>
-
-                <div class="event-item">
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">9</div>
-                  </div>
-                  <div class="event-info">
-                    <header>
-                      <a href="#" class="link-attachment">Link Post Example</a>
-                    </header>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">12 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> Election</a></span>
-
-                    </div>
-                  </div>
-                </div>
-
-                <div class="event-item">
-                  <div class="entry-attachment">
-
-                    <div class="responsive-iframe">
-                        
-                      <iframe src="https://www.youtube.com/embed/0ofqx6JRqok?rel=0&showinfo=0&autohide=2&controls=0&playlist=J2Y_ld0KL-4&enablejsapi=1"></iframe>
-
-                    </div>
-
-                  </div>
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">8</div>
-                  </div>
-                  <div class="event-info">
-                    <h4 class="event-link"><a href="#">Sed in Lacus ut Enim Adipiscing Aliquet</a></h4>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">28 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> News</a></span>
-
-                    </div>
-                    <p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. </p>
-                    <a href="#" class="info-btn">Read More</a>
-                  </div>
-                </div>
-
-                <div class="event-item">
-                  <div class="entry-attachment">
-
-                    <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/142827697&color=ff5500&auto_play=false&hide_related=false&show_artwork=true"></iframe>
-
-                  </div>
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">5</div>
-                  </div>
-                  <div class="event-info">
-                    <h4 class="event-link"><a href="#">Integer Rutrum Ante eu Lacus</a></h4>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">7 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> Election</a></span>
-
-                    </div>
-                    <p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula.  </p>
-                    <a href="#" class="info-btn">Read More</a>
-                  </div>
-                </div>
-
-                <div class="event-item">
-                  <div class="entry-attachment">
-
-                    <div class="responsive-iframe">
-                        
-                      <iframe src="//player.vimeo.com/video/216247011?title=0&byline=0&portrait=0&color=dedede" allowfullscreen=""></iframe>
-
-                    </div>
-
-                  </div>
-                  <div class="event-date">
-                    <div class="event-month">Mar</div>
-                    <div class="event-day">2</div>
-                  </div>
-                  <div class="event-info">
-                    <h4 class="event-link"><a href="#">Vestibulum Iaculis Lacinia Est</a></h4>
-                    <div class="entry-meta">
-
-                      <a href="#" class="entry-comments-link">2 Comments</a>
-                      <span class="entry-byline">by<a href="#"> Admin</a></span>
-                      <span class="entry-cat">in<a href="#"> News</a></span>
-
-                    </div>
-                    <p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. </p>
-                    <a href="#" class="info-btn">Read More</a>
-                  </div>
-                </div>
-                <h>hey you hw are you</h>
-
               </div>
 
               <ul class="pagination">

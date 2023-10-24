@@ -45,7 +45,7 @@ class Testimonials(models.Model):
     def __str__(self):
         return self.testimonial_name
 
-# features products
+# products
 class Products(models.Model):
     product_name = models.CharField(max_length=200, null=True)
     product_price = models.CharField(max_length=200, null=True)
@@ -76,6 +76,7 @@ class News(models.Model):
     date = models.DateField()
     image = models.ImageField(upload_to='news_images/', blank=True, null=True)
     iframe = models.URLField(blank=True, null=True)
+    vimeo = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.title
