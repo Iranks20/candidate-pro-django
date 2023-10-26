@@ -2,6 +2,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.db.models import F
+from django.db.models.functions import TruncMonth
+from django.views.generic import ListView
+from datetime import datetime
 
 from .models import Campaign
 from .models import Priorities
@@ -10,8 +14,8 @@ from .models import Meet
 from .models import Testimonials
 from .models import Products
 from .models import UserProfile
-from django.views.generic import ListView
 from .models import News
+from .models import Event
 
 
 def index(request):
@@ -114,3 +118,32 @@ def news(request):
 def productCategory(request):
     product_categories = Products.objects.all()
     return render(request, 'mkprofile/category_page.html', {'product_categories': product_categories})
+
+# events
+def events(request):
+    events = Event.objects.annotate(event_month=TruncMonth('date')).values('event_month').annotate(
+        month_year=F('event_month')).distinct().order_by('-event_month')
+    return render(request, 'mkprofile/event_month.html', {'events': events})
+
+# filtered events
+def filter_events(request):
+    selected_month_str = request.POST.get('selected_month')
+    
+    if selected_month_str:
+        # Parse the selected_month_str into a Python datetime.date object
+        selected_month = datetime.strptime(selected_month_str, '%Y-%m').date()
+        
+        events = Event.objects.filter(date__month=selected_month.month, date__year=selected_month.year)
+
+        # Print the data to the terminal
+        for event in events:
+            print(f"Event Title: {event.title}")
+            print(f"Event Date: {event.date}")
+            print(f"Event Description: {event.description}")
+            print("\n")
+            print("no data found")
+
+        return render(request, 'mkprofile/event_month.html', {'events': events, 'selected_month': selected_month})
+    else:
+        # Handle the case when no month is selected
+        return redirect('events')
