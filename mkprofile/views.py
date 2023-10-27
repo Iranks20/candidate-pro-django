@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.db.models import F
 from django.db.models.functions import TruncMonth
 from django.views.generic import ListView
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from .models import Campaign
 from .models import Priorities
@@ -124,26 +124,40 @@ def events(request):
     events = Event.objects.annotate(event_month=TruncMonth('date')).values('event_month').annotate(
         month_year=F('event_month')).distinct().order_by('-event_month')
     return render(request, 'mkprofile/event_month.html', {'events': events})
+    
 
 # filtered events
+
 def filter_events(request):
     selected_month_str = request.POST.get('selected_month')
-    
+
     if selected_month_str:
-        # Parse the selected_month_str into a Python datetime.date object
         selected_month = datetime.strptime(selected_month_str, '%Y-%m').date()
-        
+
+        # Calculate the first day of the month
+        first_day = selected_month.replace(day=1)
+
+        # Calculate the last day of the month
+        if selected_month.month == 12:
+            next_month = selected_month.replace(year=selected_month.year + 1, month=1)
+        else:
+            next_month = selected_month.replace(month=selected_month.month + 1)
+
+        last_day = next_month - timedelta(days=1)
+
+        # Retrieve events for the selected month
         events = Event.objects.filter(date__month=selected_month.month, date__year=selected_month.year)
 
-        # Print the data to the terminal
-        for event in events:
-            print(f"Event Title: {event.title}")
-            print(f"Event Date: {event.date}")
-            print(f"Event Description: {event.description}")
-            print("\n")
-            print("no data found")
+        # Create a list of days for the selected month with associated events
+        days = []
+        current_day = first_day
 
-        return render(request, 'mkprofile/event_month.html', {'events': events, 'selected_month': selected_month})
+        while current_day <= last_day:
+            day_events = events.filter(date=current_day)
+            days.append({'day': current_day, 'events': day_events})
+            current_day += timedelta(days=1)
+
+        return render(request, 'mkprofile/event_month.html', {'days': days, 'selected_month': selected_month})
+
     else:
-        # Handle the case when no month is selected
         return redirect('events')
