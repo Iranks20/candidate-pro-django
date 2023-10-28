@@ -38,8 +38,8 @@
                     <div class="input-holder input-cols">
                       <div class="input-col">
                         <label>Date</label>
-                        <input type="month" name="selected_month">
-                      </div>
+                        <input type="month" name="selected_month" value="{{ current_month }}">
+                      </div>                    
                       <div class="input-col">
                         <button type="submit" class="btn btn-style-3 btn-big">Find Events</button>
                       </div>
@@ -89,7 +89,7 @@
                       {% endfor %}
                     </td>
                     {% if forloop.counter|divisibleby:7 %}
-                      </tr><tr>  <!-- Start a new row after every 7 days -->
+                      </tr><tr>
                     {% endif %}
                   {% endfor %}
                 </tr>

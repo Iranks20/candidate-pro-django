@@ -121,9 +121,37 @@ def productCategory(request):
 
 # events
 def events(request):
-    events = Event.objects.annotate(event_month=TruncMonth('date')).values('event_month').annotate(
-        month_year=F('event_month')).distinct().order_by('-event_month')
-    return render(request, 'mkprofile/event_month.html', {'events': events})
+    # Get the current date to set as the default selected month
+    current_month = datetime.now().strftime("%Y-%m")
+
+    # Convert the current month to a date object
+    selected_month = datetime.strptime(current_month, '%Y-%m').date()
+
+    # Calculate the first day of the current month
+    first_day = selected_month.replace(day=1)
+
+    # Calculate the last day of the current month
+    if selected_month.month == 12:
+        next_month = selected_month.replace(year=selected_month.year + 1, month=1)
+    else:
+        next_month = selected_month.replace(month=selected_month.month + 1)
+
+    last_day = next_month - timedelta(days=1)
+
+    # Retrieve events for the current month
+    events = Event.objects.filter(date__range=[first_day, last_day]).order_by('date')
+
+    # Create a list of days for the current month with associated events
+    days = []
+    current_day = first_day
+
+    while current_day <= last_day:
+        day_events = events.filter(date=current_day)
+        days.append({'day': current_day, 'events': day_events})
+        current_day += timedelta(days=1)
+
+    # return render(request, 'mkprofile/event_month.html', {'days': days, 'selected_month': selected_month})
+    return render(request, 'mkprofile/event_month.html', {'days': days, 'current_month': current_month})
     
 
 # filtered events
