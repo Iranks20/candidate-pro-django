@@ -91,3 +91,16 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+# mission
+class Mission(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='mission_images/')
+    quote = models.TextField()
+    description1 = models.TextField(null=True)
+    description2 = models.TextField(null=True)
+    description3 = models.TextField(null=True)
+    image2 = models.ImageField(upload_to='mission_images/', null=True)
+
+    def __str__(self):
+        return self.title
+

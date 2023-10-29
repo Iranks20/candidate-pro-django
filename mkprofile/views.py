@@ -16,6 +16,7 @@ from .models import Products
 from .models import UserProfile
 from .models import News
 from .models import Event
+from .models import Mission
 
 
 def index(request):
@@ -38,6 +39,8 @@ def myAccount(request):
     return render(request, 'mkprofile/my_account.html')
 def join(request):
     return render(request, 'mkprofile/get_involved.html')
+def mission(request):
+    return render(request, 'mkprofile/news_single.html')
 def contact(request):
     return render(request, 'mkprofile/contact.html')
 
@@ -189,3 +192,10 @@ def filter_events(request):
 
     else:
         return redirect('events')
+
+# mission
+def mission(request):
+    # Retrieve mission objects from the database (you can customize the query)
+    missions = Mission.objects.all()
+    
+    return render(request, 'mkprofile/news_single.html', {'missions': missions})
