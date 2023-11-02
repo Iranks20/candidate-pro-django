@@ -6,6 +6,7 @@ from django.db.models import F
 from django.db.models.functions import TruncMonth
 from django.views.generic import ListView
 from datetime import datetime, timedelta
+from django.contrib import messages
 
 from .models import Campaign
 from .models import Priorities
@@ -17,6 +18,8 @@ from .models import UserProfile
 from .models import News
 from .models import Event
 from .models import Mission
+from .models import Subscriber
+
 
 
 def index(request):
@@ -195,7 +198,21 @@ def filter_events(request):
 
 # mission
 def mission(request):
-    # Retrieve mission objects from the database (you can customize the query)
     missions = Mission.objects.all()
     
     return render(request, 'mkprofile/news_single.html', {'missions': missions})
+
+# subscribe
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST['newsletter-email']
+        try:
+            subscriber, created = Subscriber.objects.get_or_create(email=email)
+            if created:
+                messages.success(request, 'You have subscribed successfully!')
+            else:
+                messages.error(request, 'Email address already subscribed.')
+        except Exception as e:
+            messages.error(request, 'An error occurred: ' + str(e))
+        return redirect('join')
+    return render(request, 'get_involved.html')

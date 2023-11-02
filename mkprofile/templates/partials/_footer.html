@@ -8,17 +8,23 @@
 
         <div class="row flex-row">
             <div class="col-md-8">
-            
-            <div class="bg-col-1">
-                <h5>Join Our Team</h5>
-                <form id="newsletter" class="join-form">
-                <button type="submit" class="btn btn-style-4 btn-big f-right" data-type="submit">Sign Up</button>
-                <div class="input-holder">
-                    <input type="email" name="newsletter-email" placeholder="Email address">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="bg-col-1">
+                    <h5>Join Our Team</h5>
+                    <form class="join-form" method="post" action="{% url 'subscribe' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-style-4 btn-big f-right" data-type="submit">Sign Up</button>
+                    <div class="input-holder">
+                        <input type="email" name="newsletter-email" placeholder="Email address" required>
+                    </div>
+                    </form>
                 </div>
-                </form>
-            </div>
-
             </div>
             <a href="https://flutterwave.com/donate/gvfkc19owrqk" class="col-md-4">
             
@@ -82,7 +88,7 @@
                 <ul class="social-icons">
 
                 <li><a href="#"><i class="icon-facebook"></i></a></li>
-                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="https://x.com/mkainerugaba?t=0YPAfQz_v5Y9Tia7-ji8-g&s=09"><i class="icon-twitter"></i></a></li>
                 <li><a href="#"><i class="icon-instagram-5"></i></a></li>
                 <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                 <li><a href="#"><i class="icon-flickr"></i></a></li>

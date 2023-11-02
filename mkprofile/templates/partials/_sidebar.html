@@ -39,23 +39,25 @@
 
               </div>
               <!-- widget -->
+              {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+              {% endif %}
 
               <div class="widget widget-bg2">
-                
-                <h5 class="wt-title">Join Our Team</h5>
-
-                <div class="join-us style-4">
-
-                  <p>Be the first to know about our latest updates and innovations. </p>
-
-                  <form id="newsletter2" class="join-form">
-                    <input type="email" name="newsletter-email" placeholder="Email address">
-                    <button type="submit" class="btn btn-style-6 btn-big" data-type="submit">Sign Up</button>
-                  </form>
-
-                </div>
-
-              </div>
+                  <h5 class="wt-title">Join Our Team</h5>
+                  <div class="join-us style-4">
+                      <p>Be the first to know about our latest updates and innovations.</p>
+                      <form class="join-form" method="post" action="{% url 'subscribe' %}">
+                          {% csrf_token %}
+                          <input type="email" name="newsletter-email" placeholder="Email address" required>
+                          <button type="submit" class="btn btn-style-6 btn-big" data-type="submit">Sign Up</button>
+                      </form>
+                  </div>
+              </div>            
 
               <div class="widget widget-bg">
                 
@@ -72,5 +74,3 @@
                 </ul>
 
               </div>
-
-              <!-- widget -->

@@ -9,6 +9,7 @@ from .models import UserProfile
 from .models import News
 from .models import Event
 from .models import Mission
+from .models import Subscriber
 
 admin.site.register(Campaign)
 admin.site.register(Priorities)
@@ -19,6 +20,7 @@ admin.site.register(Products)
 admin.site.register(News)
 admin.site.register(Event)
 admin.site.register(Mission)
+admin.site.register(Subscriber)
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'phone_number', 'address', 'city', 'zip_code', 'checkboxes', 'comments')
