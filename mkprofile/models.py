@@ -71,9 +71,9 @@ class UserProfile(models.Model):
 
 # news
 class News(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    date = models.DateField()
+    title = models.CharField(max_length=200, blank=True, null=True)
+    content = models.TextField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
     image = models.ImageField(upload_to='news_images/', blank=True, null=True)
     iframe = models.URLField(blank=True, null=True)
     vimeo = models.URLField(blank=True, null=True)
@@ -83,10 +83,14 @@ class News(models.Model):
 
 # events
 class Event(models.Model):
-    title = models.CharField(max_length=200)
-    date = models.DateField()
-    description = models.TextField()
-    image = models.ImageField(upload_to='events/')
+    title = models.CharField(max_length=200, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='events/',blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True, null=True)
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
+
 
     def __str__(self):
         return self.title

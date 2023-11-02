@@ -145,50 +145,29 @@
           
           <div class="row flex-row">
             <div class="col-md-6">
-
               <article class="entry">
-
-                <!-- - - - - - - - - - - - - - Attachment - - - - - - - - - - - - - - - - -->
-
-                <div class="entry-attachment">
-
-                  <figure class="thumbnail-attachment"><img src="{% static 'images/555x361_img1.jpg' %}" alt=""></figure>
-
-                </div>
-
-                <!-- - - - - - - - - - - - - - End of Attachment - - - - - - - - - - - - - - - - -->
-
-                <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
-
-                <div class="entry-body">
-
-                  <h6>Latest News</h6>
-
-                  <h4 class="entry-title"><a href="#">Nam Elit Agna, Endrerit Sit Amet, Tincidunt Ac, Viverra </a></h4>
-                  
-                  <!-- - - - - - - - - - - - - - Entry Meta - - - - - - - - - - - - - - - - -->
-
-                  <div class="entry-meta">
-
-                    <time class="entry-date" datetime="2018-03-25">March 25, 2018</time>
-
+                  <!-- Attachment -->
+                  <div class="entry-attachment">
+                      <figure class="thumbnail-attachment">
+                          <img src="{% if latest_news.image %}{{ latest_news.image.url }}{% else %}{% static 'images/555x361_img1.jpg' %}{% endif %}" alt="">
+                      </figure>
                   </div>
-
-                  <!-- - - - - - - - - - - - - - End of Meta - - - - - - - - - - - - - - - - -->
-
-                  <!-- - - - - - - - - - - - - - Entry Excerpt - - - - - - - - - - - - - - - - -->
-
-                  <a href="#" class="info-btn">More News</a>
-
-                  <!-- - - - - - - - - - - - - - End of Entry Excerpt - - - - - - - - - - - - - - - - -->
-
-                </div>
-
-                <!-- - - - - - - - - - - - - - End of Entry body - - - - - - - - - - - - - - - - -->
-
+          
+                  <!-- Entry body -->
+                  <div class="entry-body">
+                      <h6>Latest News</h6>
+                      <h4 class="entry-title"><a href="#">{{ latest_news.title }}</a></h4>
+                      <!-- Entry Meta -->
+                      <div class="entry-meta">
+                          <time class="entry-date" datetime="{{ latest_news.date|date:'Y-m-d' }}">{{ latest_news.date|date:'F d, Y' }}</time>
+                      </div>
+          
+                      <!-- More News Link -->
+                      <a href="{% url 'news' %}" class="info-btn">More News</a>
+                  </div>
               </article>
-
-            </div>
+          </div>
+          
             <div class="col-md-3">
               
               <div class="widget-twitter one-tweet">
@@ -248,40 +227,25 @@
 
             </div>
             <div class="col-md-4">
-              
               <div class="widget-events">
-                
-                <h6 class="event-title">Upcoming events</h6>
-
-                <div class="event-item">
-                  <div class="event-date">
-                    <div class="event-month">AUG</div>
-                    <div class="event-day">19</div>
+                  <h6 class="event-title">Upcoming events</h6>
+                  {% for event in recent_events %}
+                  <div class="event-item">
+                      <div class="event-date">
+                          <div class="event-month">{{ event.date|date:"M" }}</div>
+                          <div class="event-day">{{ event.date|date:"d" }}</div>
+                      </div>
+                      <div class="event-info">
+                          <h6 class="event-link"><a href="#">{{ event.title }}</a></h6>
+                          <div class="event-info-item"><i class="icon icon-location"></i>{{ event.location }}</div>
+                          <div class="event-info-item"><i class="icon icon-clock"></i>{{ event.start_time|time:"h:i A" }} – {{ event.end_time|time:"h:i A" }}</div>
+                      </div>
                   </div>
-                  <div class="event-info">
-                    <h6 class="event-link"><a href="#">Sed Ut Perspiciatis Unde</a></h6>
-                    <div class="event-info-item"><i class="icon icon-location"></i>340 W 50th St, New York</div>
-                    <div class="event-info-item"><i class="icon icon-clock"></i>10:00 am – 11:00 am</div>
-                  </div>
-                </div>
-
-                <div class="event-item">
-                  <div class="event-date">
-                    <div class="event-month">AUG</div>
-                    <div class="event-day">23</div>
-                  </div>
-                  <div class="event-info">
-                    <h6 class="event-link"><a href="#">Enim Ad Minima Veniam Quis Nostrum Exer</a></h6>
-                    <div class="event-info-item"><i class="icon icon-location"></i>340 W 50th St, New York</div>
-                    <div class="event-info-item"><i class="icon icon-clock"></i>10:00 am – 11:00 am</div>
-                  </div>
-                </div>
-
-                <a href="#" class="info-btn">More Events</a>
-
+                  {% endfor %}
+                  <a href="{% url 'events' %}" class="info-btn">More Events</a>
               </div>
-
-            </div>
+          </div>
+          
             <div class="col-md-4">
               
               <div class="widget-youtube">

@@ -55,6 +55,8 @@ def index(request):
     meet = Meet.objects.all()
     testimonials = Testimonials.objects.all()
     products = Products.objects.all()
+    latest_news = News.objects.order_by('-date').first()
+    recent_events = Event.objects.order_by('-date')[:2]
 
     return render(request, 'mkprofile/index.html', {
     'campaigns': campaigns,
@@ -62,9 +64,11 @@ def index(request):
     'priorityexamples': priorityexamples,
     'meet': meet,
     'testimonials': testimonials,
-    'products': products
+    'products': products,
+    'latest_news': latest_news,
+    'recent_events': recent_events,
     })
-
+    # latest news
 # data for issues.html
 def issues(request):
     priorityexamples = priorityExamples.objects.all()
@@ -216,3 +220,4 @@ def subscribe(request):
             messages.error(request, 'An error occurred: ' + str(e))
         return redirect('join')
     return render(request, 'get_involved.html')
+
