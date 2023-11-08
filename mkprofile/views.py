@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.db.models import F
@@ -46,6 +46,7 @@ def mission(request):
     return render(request, 'mkprofile/news_single.html')
 def contact(request):
     return render(request, 'mkprofile/contact.html')
+
 
 # data for index.html
 def index(request):
@@ -220,4 +221,21 @@ def subscribe(request):
             messages.error(request, 'An error occurred: ' + str(e))
         return redirect('join')
     return render(request, 'get_involved.html')
+
+#product details
+def productPage(request, product_id):
+    product_details = get_object_or_404(Products, pk=product_id)
+    return render(request, 'mkprofile/product_page.html', {'product_details': product_details})
+
+# product checkout details
+def checkout(request):
+    product_id = request.GET.get('product_id')
+    size = request.GET.get('size')
+    quantity = request.GET.get('quantity')
+    product_details = get_object_or_404(Products, pk=product_id)
+    quantity = int(quantity)
+    product_price = float(product_details.product_price)
+    total = product_price * quantity 
+
+    return render(request, 'mkprofile/checkout.html', {'product_id': product_id, 'quantity': quantity, 'product_details': product_details, 'total': total, 'size': size})
 

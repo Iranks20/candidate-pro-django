@@ -42,41 +42,11 @@
 
                     <div class="image-preview">
 
-                      <img href="{% static 'images/555x555_img1.jpg' %}" id="zoom-image" data-zoom-image="{% static 'images/555x555_img1.jpg' %}" src="{% static 'images/555x555_img1.jpg' %}" alt="" data-fancybox="group">
+                      <img href="{{ product_details.product_image.url }}" id="zoom-image" data-zoom-image="{{ product_details.product_image.url }}" src="{{ product_details.product_image.url }}" alt="" data-fancybox="group">
 
                     </div><!--/ .image-preview-->
 
                     <!-- - - - - - - - - - - - - - End of Image Preview Container - - - - - - - - - - - - - - - - -->
-
-                    <!-- - - - - - - - - - - - - - Thumbnails - - - - - - - - - - - - - - - - -->
-
-                    <div class="carousel-type-4 type-2">
-
-                      <div class="owl-carousel type-small product-thumbs" id="thumbnails" data-max-items="4">
-                      
-                        <a class="active" href="#" data-image="{% static 'images/555x555_img1.jpg' %}" data-zoom-image="{% static 'images/555x555_img1.jpg' %}">
-                        
-                          <img src="{% static 'images/130x130_img1.jpg' %}" alt="">
-
-                        </a>
-
-                        <a href="{% static 'images/555x555_img1.jpg' %}" data-image="{% static 'images/555x555_img1.jpg' %}" data-zoom-image="{% static 'images/555x555_img1.jpg' %}" data-fancybox="group">
-
-                          <img src="{% static 'images/130x130_img1.jpg' %}" alt="">
-
-                        </a>
-
-                        <a href="{% static 'images/555x555_img1.jpg' %}" data-image="{% static 'images/555x555_img1.jpg' %}" data-zoom-image="{% static 'images/555x555_img1.jpg' %}" data-fancybox="group">
-
-                          <img src="{% static 'images/130x130_img1.jpg' %}" alt="">
-
-                        </a>
-
-                      </div>
-
-                    </div>
-
-                    <!-- - - - - - - - - - - - - - End of Thumbnails - - - - - - - - - - - - - - - - -->
 
                   </div><!--/ .image-preview-container -->
 
@@ -88,12 +58,12 @@
 
                   <div class="product-description">
 
-                    <h3 class="product-name">Men’s T-shirt White</h3>
+                    <h3 class="product-name">{{ product_details.product_name }}</h3>
 
                     <div class="pricing-area">
 
                       <div class="product-price">
-                        $25.00
+                        ugx {{ product_details.product_price }}
                       </div>
                       <ul class="rating">
                         <li><i class="icon icon-star-8"></i></li>
@@ -103,14 +73,13 @@
                         <li><i class="icon icon-star-empty-3"></i></li>
                       </ul>
                       &nbsp;
-                      <span>(<a href="#">2 customer reviews</a>)</span>
+                      <span>(<a href="#">customer reviews</a>)</span>
 
                     </div>
 
-                    <p class="product-excerpt">Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer.</p>
+                    <p class="product-excerpt">{{ product_details.customer_review }}</p>
 
                     <form class="add-to-cart-form">
-
                       <div class="custom-select">
                         <label><b>Size:</b></label>
                         <div class="select-title">Small</div>
@@ -121,28 +90,23 @@
                           <option value="menu">Extra</option>
                         </select>
                       </div>
-
                       <div class="product-actions">
-                        
                         <label><b>Quantity:</b></label>
                         <div>
                           <div class="quantity">
                             <button type="button" class="qty-minus"><i class="icon icon-up-dir"></i></button>
-                            <input type="text" value="1" readonly="">
+                            <input id="selected-quantity" type="text" value="1" readonly="">
                             <button type="button" class="qty-plus"><i class="icon icon-down-dir"></i></button>
                           </div>
-                          <a href="{% url 'shopCart' %}" class="btn btn-style-6 btn-big">Add to Cart</a>
+                          <a id="add-to-cart-button" class="btn btn-style-6 btn-big">Proceed To Checkout</a>
                         </div>
-
-                      </div><!--/ .product-actions -->
-
+                      </div>
                     </form>
 
                     <ul class="product-meta">
 
-                      <li><b>SKU:</b> <span>N31</span></li>
-                      <li><b>Category:</b> <a href="#">T-shirts</a></li>
-                      <li><b>Tags:</b> <a href="#">t-shirt</a>, <a href="#">white</a></li>
+                      <li><b>Category:</b> <a>{{ product_details.product_category }}</a></li>
+                      <li><b>Made In Uganda</li>
 
                     </ul>
 
@@ -187,7 +151,7 @@
                       <a href="#tab-1">Description</a>
                     </li>
                     <li>
-                      <a href="#tab-2">Reviews(2)</a>
+                      <a href="#tab-2">Rules</a>
                     </li>
                   </ul>
                   <!--tabs content-->                 
@@ -195,10 +159,11 @@
                     <div id="tab-1">
 
                       <p>
-                        Donec eget tellus non erat lacinia. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. Mauris accumsan nulla vel diam. 
+                        Donations or Every Commodity You Purchase on this website, the icome generated goes to a joint fundraising committee on behalf of Presidential Candidate MK and Uganda's Future. Joint fundraising proceeds shall be allocated among the committees as follows: 90% to Presidential Candidate MK (2026 presidential election), 10% to Uganda's Future. Any contribution exceeding the legal amount that may be contributed to either of the Committees will be allocated to Presidential Candidate MK (2026 general election).
+                        Notwithstanding this allocation method set forth above, any contributor may designate their contribution for a particular participant. In addition, the allocation formula may change if a contributor makes a contribution exceeding the maximum legal amount for a particular participant.
                       </p>
                       <p>
-                        Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis. 
+                        Contributions to Mk through purchasing products or donations are not tax-deductible as charitable contributions for Ugandan tax purposes. Contributions by corporations, labor unions, foreign nationals, and government contractors are prohibited. 
                       </p>
 
                     </div>
@@ -206,283 +171,25 @@
 
                       <div class="content-element">
                       
-                        <h5 class="section-title">2 Reviews For Men’s T-shirt White</h5>
+                        <h5 class="section-title">Contribution Rules</h5>
 
                         <ol class="comments-list">
           
-                          <li class="comment">
-
-                            <article>
-
-                              <!-- - - - - - - - - - - - - - Avatar - - - - - - - - - - - - - - - - -->
-
-                              <div class="gravatar">
-                                
-                                <a href="#"><img src="{% static 'images/100x100_photo2.jpg' %}" alt=""></a>
-
-                              </div>
-
-                              <!-- - - - - - - - - - - - - - End of avatar - - - - - - - - - - - - - - - - -->
-
-                              <!-- - - - - - - - - - - - - - Comment body - - - - - - - - - - - - - - - - -->
-
-                              <div class="comment-body">
-
-                                <header class="comment-meta">
-
-                                  <h6 class="comment-author"><a href="#">Camala Haddon</a></h6>
-                                  <div class="wrapper">
-                                    <time datetime="2017-10-17 02:41" class="comment-date single f-left">October 17, 2018 at 2:41 pm</time>
-                                    <ul class="rating f-right">
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-empty-3"></i></li>
-                                    </ul>
-                                  </div>
-
-                                </header>
-
-                                <p>Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
-
-                              </div><!--/ .comment-body-->
-
-                              <!-- - - - - - - - - - - - - - End of comment body - - - - - - - - - - - - - - - - -->
-
-                            </article>
-
-                          </li>
-
-                          <li class="comment">
-
-                            <article>
-
-                              <!-- - - - - - - - - - - - - - Avatar - - - - - - - - - - - - - - - - -->
-
-                              <div class="gravatar">
-                                
-                                <a href="#"><img src="{% static 'images/100x100_photo3.jpg' %}" alt=""></a>
-
-                              </div>
-
-                              <!-- - - - - - - - - - - - - - End of avatar - - - - - - - - - - - - - - - - -->
-
-                              <!-- - - - - - - - - - - - - - Comment body - - - - - - - - - - - - - - - - -->
-
-                              <div class="comment-body">
-
-                                <header class="comment-meta">
-
-                                  <h6 class="comment-author"><a href="#">Bradley Grosh</a></h6>
-                                  <div class="wrapper">
-                                    <time datetime="2017-10-17 02:41" class="comment-date single f-left">October 17, 2018 at 2:41 pm</time>
-                                    <ul class="rating f-right">
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                      <li><i class="icon icon-star-8"></i></li>
-                                    </ul>
-                                  </div>
-
-                                </header>
-
-                                <p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat.  </p>
-
-                              </div><!--/ .comment-body-->
-
-                              <!-- - - - - - - - - - - - - - End of comment body - - - - - - - - - - - - - - - - -->
-
-                            </article>
-
+                          <li>
+                          <p>1. I am a Ugamdan citizen or lawfully admitted permanent resident.</p>
+                          <p>2. This contribution is made from my own funds, and funds are not being provided to me by another person or entity for the purpose of making this contribution.</p>
+                          <p>3. I am making this contribution with my own personal credit card and not with a corporate or business credit card or a card issued to another person.</p>
+                          <p>4. I am at least eighteen years old. I am not, nor am I making this contribution on behalf of, a corporation, labor organization, national bank, foreign national, or any other unreliable source.</p>
                           </li>
                       
                         </ol>
 
                       </div>
-
-                      <div class="content-element">
-                        
-                        <div class="bg-sidebar-item style-2">
-                          
-                          <h5>Add a Review</h5>
-                          <p class="content-element3">Your email address will not be published. Fields marked with <span class="required">an</span> are required.</p>
-
-                          <div class="join-us style-4">
-                            <form class="join-form">
-                              <div class="row flex-row">
-                                <div class="col-sm-12">
-                            
-                                  <label class="required">Name</label>
-                                  <input type="text">
-                            
-                                </div>
-                              </div>
-                              <div class="row flex-row">
-                                <div class="col-sm-12">
-                            
-                                  <label class="required">Email address</label>
-                                  <input type="email">
-                            
-                                </div>
-                              </div>
-                              <div class="row flex-row">
-                                <div class="col-sm-12">
-                            
-                                  <label>Your Rating</label>
-                                  <ul class="rating-list">
-                              
-                                    <li>
-                                      <ul class="rating">
-                                        <li><i class="icon icon-star-8"></i></li>
-                                      </ul>
-                                    </li>
-                                    <li>
-                                      <ul class="rating">
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                      </ul>
-                                    </li>
-                                    <li>
-                                      <ul class="rating">
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                      </ul>
-                                    </li>
-                                    <li>
-                                      <ul class="rating">
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                      </ul>
-                                    </li>
-                                    <li>
-                                      <ul class="rating">
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                        <li><i class="icon icon-star-8"></i></li>
-                                      </ul>
-                                    </li>
-
-                                  </ul>
-                            
-                                </div>
-                              </div>
-                              <div class="row flex-row">
-                                <div class="col-sm-12">
-                          
-                                  <label class="required">Comment</label>
-                                  <textarea rows="10"></textarea>
-                            
-                                </div>
-                              </div>
-                              <button type="submit" class="btn btn-style-3 btn-big" data-type="submit">Submit Review</button>
-                            </form>
-                          </div>
-
-                        </div>
-
-                      </div>
-
                     </div>
                   </div>
                 </div>
 
               </main>
-              <aside id="sidebar" class="col-md-4 col-sm-12">
-                
-                <!-- widget -->
-                <div class="widget widget-bg">
-                
-                  <h5 class="wt-title">Related Products</h5>
-
-                  <div class="products-holder">
-                    
-                    <!-- product -->
-                    <div class="product">
-                              
-                      <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
-                      <div class="product-image">
-                        <a href="#"><img src="{% static 'images/100x100_img1.jpg' %}" alt=""></a>
-                      </div>
-                      <!-- - - - - - - - - - - - - - End of Product Image - - - - - - - - - - - - - - - - -->
-
-                      <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
-                      <div class="product-description">
-
-                        <h5 class="product-name"><a href="#">Men’s T-shirt White</a></h5>
-
-                        <div class="product-price new-price">$25</div>
-                        <ul class="rating">
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-empty-3"></i></li>
-                        </ul>
-
-                      </div>
-                      <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
-
-                    </div>
-                    <!-- product -->
-                    <div class="product">
-                              
-                      <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
-                      <div class="product-image">
-                        <a href="#"><img src="{% static 'images/100x100_img2.jpg' %}" alt=""></a>
-                      </div>
-                      <!-- - - - - - - - - - - - - - End of Product Image - - - - - - - - - - - - - - - - -->
-
-                      <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
-                      <div class="product-description">
-
-                        <h5 class="product-name"><a href="#">Cotton Tote Bag White</a></h5>
-
-                        <div class="product-price new-price">$35</div>
-
-                      </div>
-                      <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
-
-                    </div>
-                    <!-- product -->
-                    <div class="product">
-                              
-                      <!-- - - - - - - - - - - - - - Product Image - - - - - - - - - - - - - - - - -->
-                      <div class="product-image">
-                        <a href="#"><img src="{% static 'images/100x100_img3.jpg' %}" alt=""></a>
-                      </div>
-                      <!-- - - - - - - - - - - - - - End of Product Image - - - - - - - - - - - - - - - - -->
-
-                      <!-- - - - - - - - - - - - - - Product Description - - - - - - - - - - - - - - - - -->
-                      <div class="product-description">
-
-                        <h5 class="product-name"><a href="#">Morning Mug White</a></h5>
-
-                        <div class="product-price new-price">$30</div>
-                        <ul class="rating">
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-8"></i></li>
-                          <li><i class="icon icon-star-empty-3"></i></li>
-                        </ul>
-
-                      </div>
-                      <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </aside>
 
             </div>
 
@@ -491,5 +198,15 @@
         </div>
 
       </div>
+      <script>
+        document.getElementById('add-to-cart-button').addEventListener('click', function() {
+          var selectedQuantity = document.getElementById('selected-quantity').value;
+          var selectedSize = document.querySelector('.select-title').textContent;
+          var productId = "{{ product_details.id }}";
+          var url = "{% url 'checkout' %}?product_id=" + productId + "&quantity=" + selectedQuantity + "&size=" + selectedSize;
+          window.location.href = url;
+        });
+    </script>
+    
 
 {% endblock %}

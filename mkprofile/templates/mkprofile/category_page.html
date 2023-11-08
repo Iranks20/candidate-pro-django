@@ -58,7 +58,7 @@
                   <a href="#"><img src="{{ product.product_image.url }}" alt=""></a>
                   <div class="overlay">
                     <div class="overlay-inner">
-                      <a href="#" class="btn btn-style-6 btn-small">Add To Cart</a>
+                      <a href="{% url 'productPage' product.id %}" class="btn btn-style-6 btn-small">Add To Cart</a>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
 
                   <h5 class="product-name"><a href="#">{{ product.product_name }}</a></h5>
 
-                  <div class="product-price new-price">{{ product.product_price }}</div>
+                  <div class="product-price new-price">ugx {{ product.product_price }}</div>
 
                 </div>
                 <!-- - - - - - - - - - - - - - End of Product Description - - - - - - - - - - - - - - - - -->

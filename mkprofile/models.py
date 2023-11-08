@@ -50,6 +50,8 @@ class Products(models.Model):
     product_name = models.CharField(max_length=200, null=True)
     product_price = models.CharField(max_length=200, null=True)
     product_image = models.ImageField(upload_to='products_images/', null=True)
+    customer_review = models.TextField(blank=True, null=True)
+    product_category = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.product_name
