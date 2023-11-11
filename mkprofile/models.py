@@ -117,3 +117,23 @@ class Subscriber(models.Model):
     def __str__(self):
         return self.email
 
+# checkout
+class CheckoutOrder(models.Model):
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100, null=True)
+    company_name = models.CharField(max_length=100, blank=True, null=True)
+    address = models.TextField(null=True)
+    town_city = models.CharField(max_length=100, null=True)
+    phone = models.CharField(max_length=15, null=True)
+    email = models.EmailField(null=True)
+    order_notes = models.TextField(blank=True, null=True)
+    product_name = models.CharField(max_length=200, null=True)
+    size = models.CharField(max_length=20, null=True)
+    quantity = models.IntegerField(null=True)
+    unit_cost = models.TextField(null=True)
+    delivery_cost = models.TextField(null=True)
+    total_cost = models.TextField(null=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.product_name}"
+

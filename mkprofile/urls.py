@@ -20,6 +20,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('signup/', views.signup, name='signup'),
     path('subscribe/', views.subscribe, name='subscribe'),
+    path('checkout_order/', views.checkout_order, name='checkout_order'),
 
 
 ]

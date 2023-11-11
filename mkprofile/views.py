@@ -19,6 +19,8 @@ from .models import News
 from .models import Event
 from .models import Mission
 from .models import Subscriber
+from .models import CheckoutOrder
+from django.contrib import messages
 
 
 
@@ -238,4 +240,46 @@ def checkout(request):
     total = product_price * quantity 
 
     return render(request, 'mkprofile/checkout.html', {'product_id': product_id, 'quantity': quantity, 'product_details': product_details, 'total': total, 'size': size})
+
+def checkout_order(request):
+    if request.method == 'POST':
+        # Retrieve form data
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        company_name = request.POST.get('company_name')
+        address = request.POST.get('address')
+        town_city = request.POST.get('town_city')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        order_notes = request.POST.get('order_notes')
+        product_name = request.POST.get('product_name')
+        size = request.POST.get('size')
+        quantity = request.POST.get('quantity')
+        unit_cost = request.POST.get('unit_cost')
+        delivery_cost = request.POST.get('delivery_cost')
+        total_cost = request.POST.get('total_cost')
+
+        # Save data to CheckoutOrder model
+        checkout_order = CheckoutOrder(
+            first_name=first_name,
+            last_name=last_name,
+            company_name=company_name,
+            address=address,
+            town_city=town_city,
+            phone=phone,
+            email=email,
+            order_notes=order_notes,
+            product_name=product_name,
+            size=size,
+            quantity=quantity,
+            unit_cost=unit_cost,
+            delivery_cost=delivery_cost,
+            total_cost=total_cost
+        )
+        checkout_order.save()
+
+        messages.success(request, 'Order placed successfully!')
+        return redirect('https://flutterwave.com/donate/gvfkc19owrqk')  # Replace 'your_success_url' with the actual URL where you want to redirect after successful submission
+
+    return render(request, 'mkprofile/checkout.html')  # Replace 'your_checkout_template.html' with the actual template name
 
