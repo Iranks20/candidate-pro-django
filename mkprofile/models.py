@@ -25,6 +25,14 @@ class priorityExamples(models.Model):
 
     def __str__(self):
         return self.priorities_heading
+
+# other issues(other priorities)
+class otherPriorities(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
     
 # meet mk
 class Meet(models.Model):
@@ -77,7 +85,7 @@ class News(models.Model):
     content = models.TextField(blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     image = models.ImageField(upload_to='news_images/', blank=True, null=True)
-    iframe = models.URLField(blank=True, null=True)
+    youtube_url = models.URLField(blank=True, null=True)
     vimeo = models.URLField(blank=True, null=True)
 
     def __str__(self):

@@ -1,4 +1,4 @@
-﻿{% extends 'layout/events_app.html' %}
+{% extends 'layout/events_app.html' %}
 {% load i18n %}
 
 {% load static %}
@@ -11,12 +11,12 @@
 
         <div class="container">
           
-          <h1 class="page-title">RECENT NEWS</h1>
+          <h1 class="page-title">NEWS DETAILS</h1>
 
           <ul class="breadcrumbs">
 
             <li><a href="index.html">Home</a></li>
-            <li>News</li>
+            <li>News Details</li>
 
           </ul>
 
@@ -34,34 +34,30 @@
             <main id="main" class="col-md-8 col-sm-12">
               
               <div class="events-holder">
-                {% for entry in news_entries %}
                 <div class="event-item">
                   <div class="entry-attachment">
-                    {% if entry.vimeo %}
+                    {% if  news_details.vimeo %}
                         <div class="responsive-iframe">
-                          <iframe src="{{ entry.vimeo }}?title=0&byline=0&portrait=0&color=dedede" allowfullscreen=""></iframe>
+                          <iframe src="{{ news_details.vimeo }}?title=0&byline=0&portrait=0&color=dedede" allowfullscreen=""></iframe>
                         </div>
-                    {% elif entry.youtube_url %}
+                    {% elif  news_details.youtube_url %}
                         <div class="responsive-iframe">
-                            <iframe src="{{ entry.youtube_url }}"></iframe>
+                            <iframe src="{{ news_details.youtube_url }}"></iframe>
                         </div>
-                    {% elif entry.image %}
-                        <img src="{{ entry.image.url }}" alt="{{ entry.title }}">
+                    {% elif  news_details.image %}
+                        <img src="{{ news_details.image.url }}" alt="{{ entry.title }}">
                     {% endif %}
                 </div>
                 
                   <div class="event-date">
-                    <div class="event-month">{{ entry.date|date:"M" }}</div>
-                    <div class="event-day">{{ entry.date|date:"d" }}</div>
+                    <div class="event-month">{{ news_details.date|date:"M" }}</div>
+                    <div class="event-day">{{ news_details.date|date:"d" }}</div>
                   </div>
                   <div class="event-info">
-                    <h4 class="event-link"><a href="#">{{ entry.title }}</a></h4>
-                    <p>{{ entry.content }}</p>
-                    <a href="{% url 'news_details' entry.id %}" class="info-btn">Read More</a>
+                    <h4 class="event-link"><a href="#">{{ news_details.title }}</a></h4>
+                    <p>{{ news_details.content }}</p>
                   </div>
                 </div>
-                {% empty %}
-                {% endfor %}
               </div>
 
               <ul class="pagination">

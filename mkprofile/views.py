@@ -11,6 +11,7 @@ from django.contrib import messages
 from .models import Campaign
 from .models import Priorities
 from .models import priorityExamples
+from .models import otherPriorities
 from .models import Meet
 from .models import Testimonials
 from .models import Products
@@ -48,6 +49,8 @@ def mission(request):
     return render(request, 'mkprofile/news_single.html')
 def contact(request):
     return render(request, 'mkprofile/contact.html')
+def news_details(request):
+    return render(request, 'mkprofile/news_details.html')
 
 
 # data for index.html
@@ -75,9 +78,11 @@ def index(request):
 # data for issues.html
 def issues(request):
     priorityexamples = priorityExamples.objects.all()
+    otherpriorities = otherPriorities.objects.all()
 
     return render(request, 'mkprofile/issues.html', {
     'priorityexamples': priorityexamples,
+    'otherpriorities': otherpriorities,
     })
 
 # registering joining user
@@ -229,6 +234,11 @@ def productPage(request, product_id):
     product_details = get_object_or_404(Products, pk=product_id)
     return render(request, 'mkprofile/product_page.html', {'product_details': product_details})
 
+#news details
+def news_details(request, news_id):
+    news_details = get_object_or_404(News, pk=news_id)
+    return render(request, 'mkprofile/news_detail.html', {'news_details': news_details})
+
 # product checkout details
 def checkout(request):
     product_id = request.GET.get('product_id')
@@ -279,7 +289,7 @@ def checkout_order(request):
         checkout_order.save()
 
         messages.success(request, 'Order placed successfully!')
-        return redirect('https://flutterwave.com/donate/gvfkc19owrqk')  # Replace 'your_success_url' with the actual URL where you want to redirect after successful submission
+        return redirect('https://flutterwave.com/pay/hpimxsvovffx') 
 
-    return render(request, 'mkprofile/checkout.html')  # Replace 'your_checkout_template.html' with the actual template name
+    return render(request, 'mkprofile/checkout.html')
 
