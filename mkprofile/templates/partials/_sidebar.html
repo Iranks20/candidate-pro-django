@@ -1,76 +1,104 @@
 {% load static %}
               
-              <div class="widget widget-bg">
-                
-                <h5 class="wt-title">Categories</h5>
+<div class="widget widget-bg">
+  
+  <h5 class="wt-title">Categories</h5>
 
-                <ul class="custom-list type-1">
+  <ul class="custom-list type-1">
 
-                  <li><h6><a href="#">News</a></h6></li>
-                  <li><h6><a href="#">Government</a></h6></li>
-                  <li><h6><a href="#">Election</a></h6></li>
-                  <li><h6><a href="#">Campaign</a></h6></li>
-                  <li><h6><a href="#">Press</a></h6></li>
+    {% for category in categories %}
+        <li><h6><a href="{% url 'news_by_category' category_name=category.name %}">{{ category.name }}</a></h6></li>
+    {% endfor %}
 
-                </ul>
+  </ul>
 
-              </div>
-              <div class="widget">
-                
-                <div class="action-widget style-2 type-vr">
+</div>
+<div class="widget">
+  
+  <div class="action-widget style-2 type-vr">
 
-                  <!-- action-item -->
+    <!-- action-item -->
 
-                  <div class="action-item donate">
-                    <div class="action-inner">
-                  
-                      <h5 class="action-title"><b>Donate Now!</b></h5>
-                      <div id="chose-donate" class="chose-donate">
-                        <button class="chose-item">$5</button>
-                        <button class="chose-item">$25</button>
-                        <button class="chose-item">Other</button>
-                        <a href="https://flutterwave.com/donate/gvfkc19owrqk" class="btn btn-style-4">Donate</a>
-                      </div>
+    <div class="action-item donate">
+      <div class="action-inner">
+    
+        <h5 class="action-title"><b>Donate Now!</b></h5>
+        <div id="chose-donate" class="chose-donate">
+          <button class="chose-item">$5</button>
+          <button class="chose-item">$25</button>
+          <button class="chose-item">Other</button>
+          <a href="https://flutterwave.com/donate/gvfkc19owrqk" class="btn btn-style-4">Donate</a>
+        </div>
 
-                    </div>
-                  </div>
+      </div>
+    </div>
 
-                </div>
+  </div>
 
-              </div>
-              <!-- widget -->
-              {% if messages %}
-              <ul class="messages">
-                  {% for message in messages %}
-                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                  {% endfor %}
-              </ul>
-              {% endif %}
+</div>
+<!-- widget -->
+<div class="widget widget-bg2">
+    <h5 class="wt-title">Join Our Team</h5>
+    <div class="join-us style-4">
+        <p>Be the first to know about our latest updates and innovations.</p>
+        <form class="join-form" id="subscribeForm">
+            {% csrf_token %}
+            <input type="email" name="newsletter-email" id="newsletterEmail" placeholder="Email address" required>
+            <button type="button" class="btn btn-style-6 btn-big" onclick="subscribe()">Sign Up</button>
+        </form>
+    </div>
+</div>
 
-              <div class="widget widget-bg2">
-                  <h5 class="wt-title">Join Our Team</h5>
-                  <div class="join-us style-4">
-                      <p>Be the first to know about our latest updates and innovations.</p>
-                      <form class="join-form" method="post" action="{% url 'subscribe' %}">
-                          {% csrf_token %}
-                          <input type="email" name="newsletter-email" placeholder="Email address" required>
-                          <button type="submit" class="btn btn-style-6 btn-big" data-type="submit">Sign Up</button>
-                      </form>
-                  </div>
-              </div>            
+<script>
+  function subscribe() {
+    var email = $('#newsletterEmail').val();
 
-              <div class="widget widget-bg">
-                
-                <h5 class="wt-title">Archives</h5>
+    // Check if the email is empty
+    if (!email) {
+      alert('Please Fill in your email address.');
+      return;
+    }
 
-                <ul class="custom-list type-1">
+    // Check if the email has a valid format
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
 
-                  <li><h6><a href="#">November 2018</a></h6></li>
-                  <li><h6><a href="#">October 2018</a></h6></li>
-                  <li><h6><a href="#">September 2018</a></h6></li>
-                  <li><h6><a href="#">August 2018</a></h6></li>
-                  <li><h6><a href="#">July 2018</a></h6></li>
+    // If checks pass, proceed with AJAX call
+    $.ajax({
+      type: 'POST',
+      url: '{% url "subscribe" %}',
+      data: {
+        'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+        'newsletter-email': email,
+      },
+      success: function(response) {
+        if (response.success) {
+          alert(response.message);
+        } else {
+          alert('Error: ' + response.message);
+        }
+      },
+      error: function(xhr, status, error) {
+        alert('An error occurred: ' + xhr.responseText);
+      }
+    });
+  }
+</script>
+  
 
-                </ul>
+<div class="widget widget-bg">
+  
+  <h5 class="wt-title">Archives</h5>
 
-              </div>
+  <ul class="custom-list type-1">
+    <ul class="custom-list type-1">
+      {% for archive in archives %}
+          <li><h6><a href="{% url 'news_by_year' year=archive.year %}">{{ archive.year }}</a></h6></li>
+      {% endfor %}
+    </ul>
+  </ul>
+
+</div>

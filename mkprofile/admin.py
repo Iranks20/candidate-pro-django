@@ -12,6 +12,8 @@ from .models import Event
 from .models import Mission
 from .models import Subscriber
 from .models import CheckoutOrder
+from .models import Category
+from .models import NewsArchive
 
 admin.site.register(Campaign)
 admin.site.register(Priorities)
@@ -25,6 +27,8 @@ admin.site.register(Event)
 admin.site.register(Mission)
 admin.site.register(Subscriber)
 admin.site.register(CheckoutOrder)
+admin.site.register(Category)
+admin.site.register(NewsArchive)
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'phone_number', 'address', 'city', 'zip_code', 'checkboxes', 'comments')

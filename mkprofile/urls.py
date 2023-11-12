@@ -22,7 +22,9 @@ urlpatterns = [
     path('subscribe/', views.subscribe, name='subscribe'),
     path('checkout_order/', views.checkout_order, name='checkout_order'),
     path('news_details/<int:news_id>/', views.news_details, name='news_details'),
-
+    path('issues_details/<int:issues_id>/', views.issues_details, name='issues_details'),
+    path('news/category/<str:category_name>/', views.news_by_category, name='news_by_category'),
+    path('news/archive/<int:year>/', views.news_by_year, name='news_by_year'),
 
 
 ]

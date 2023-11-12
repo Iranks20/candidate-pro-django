@@ -42,7 +42,7 @@
                     <figure><a href="#"><img src="{{ priorityexample.priorities_image.url }}" alt=""></a></figure>
                     <h5><a href="#">{{ priorityexample.priorities_heading }}</a></h5>
                     <p>{{ priorityexample.priorities_description }}</p>
-                    <a href="#" class="info-btn">Read More</a>
+                    <a href="{% url 'issues_details' priorityexample.id %}" class="info-btn">Read More</a>
 
                   </div>
                 </div>

@@ -8,24 +8,51 @@
 
         <div class="row flex-row">
             <div class="col-md-8">
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
                 <div class="bg-col-1">
                     <h5>Join Our Team</h5>
-                    <form class="join-form" method="post" action="{% url 'subscribe' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-style-4 btn-big f-right" data-type="submit">Sign Up</button>
-                    <div class="input-holder">
-                        <input type="email" name="newsletter-email" placeholder="Email address" required>
-                    </div>
+                    <form class="join-form" id="subscribeForm">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-style-4 btn-big f-right" onclick="subscriber()">Sign Up</button>
+                        <div class="input-holder">
+                            <input type="email" name="newsletter-email" id="newsEmail" placeholder="Email address" required>
+                        </div>
                     </form>
                 </div>
             </div>
+            
+            <script>
+                function subscriber() {
+                    var email = $('#newsEmail').val();
+                    if (!email) {
+                    alert('Please Fill in your email address.');
+                    return;
+                    }
+                    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "subscribe" %}',
+                        data: {
+                            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+                            'newsletter-email': email,
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                alert(response.message);
+                            } else {
+                                alert('Error: ' + response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('An error occurred: ' + xhr.responseText);
+                        }
+                    });
+                }
+            </script>            
+            
             <a href="https://flutterwave.com/donate/gvfkc19owrqk" class="col-md-4">
             
             <div class="bg-col-2">

@@ -75,10 +75,12 @@
                       {% for event in day.events %}
                         <div class="tribe-events-category-tech-events">
                           <a href="#">{{ event.title }}</a>
+                          <h6 href="#"><b>{{ event.location }}</b></h6>
                           <div class="tribe-events-tooltip">
                             <header>
                               <h6>{{ event.title }}</h6>
-                              <time datetime="{{ event.date|date:'Y-m-d' }}">{{ event.date|date:"F d" }}</time>
+                              <!-- <h8>{{ event.location }}</h8> -->
+                              <time datetime="{{ event.date|date:'Y-m-d' }}">{{ event.date|date:"F d" }}, {{ event.location }}</time>
                             </header>
                             <div class="clearfix">
                               <img src="{{ event.image.url }}" alt="" class="alignleft">

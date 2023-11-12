@@ -21,8 +21,8 @@ from .models import Event
 from .models import Mission
 from .models import Subscriber
 from .models import CheckoutOrder
-from django.contrib import messages
-
+from .models import Category
+from .models import NewsArchive
 
 
 def index(request):
@@ -51,6 +51,8 @@ def contact(request):
     return render(request, 'mkprofile/contact.html')
 def news_details(request):
     return render(request, 'mkprofile/news_details.html')
+def issues_details(request):
+    return render(request, 'mkprofile/issues_details.html')
 
 
 # data for index.html
@@ -130,7 +132,9 @@ def signup(request):
 # news
 def news(request):
     news_entries = News.objects.all()
-    return render(request, 'mkprofile/news_sidebar.html', {'news_entries': news_entries})
+    categories = Category.objects.all()
+    archives = NewsArchive.objects.all()
+    return render(request, 'mkprofile/news_sidebar.html', {'news_entries': news_entries, 'categories': categories, 'archives': archives})
 
 # products
 def productCategory(request):
@@ -215,18 +219,25 @@ def mission(request):
     return render(request, 'mkprofile/news_single.html', {'missions': missions})
 
 # subscribe
+from django.http import JsonResponse
+
 def subscribe(request):
     if request.method == 'POST':
         email = request.POST['newsletter-email']
         try:
             subscriber, created = Subscriber.objects.get_or_create(email=email)
             if created:
-                messages.success(request, 'You have subscribed successfully!')
+                message = 'You have subscribed successfully!'
+                response_data = {'success': True, 'message': message}
             else:
-                messages.error(request, 'Email address already subscribed.')
+                message = 'Email address already subscribed.'
+                response_data = {'success': False, 'message': message}
         except Exception as e:
-            messages.error(request, 'An error occurred: ' + str(e))
-        return redirect('join')
+            message = 'An error occurred: ' + str(e)
+            response_data = {'success': False, 'message': message}
+
+        return JsonResponse(response_data)
+
     return render(request, 'get_involved.html')
 
 #product details
@@ -237,7 +248,14 @@ def productPage(request, product_id):
 #news details
 def news_details(request, news_id):
     news_details = get_object_or_404(News, pk=news_id)
-    return render(request, 'mkprofile/news_detail.html', {'news_details': news_details})
+    categories = Category.objects.all()
+    archives = NewsArchive.objects.all()
+    return render(request, 'mkprofile/news_detail.html', {'news_details': news_details, 'categories': categories, 'archives': archives})
+
+# issues details
+def issues_details(request, issues_id):
+    issues_details = get_object_or_404(priorityExamples, pk=issues_id)
+    return render(request, 'mkprofile/issues_details.html', {'issues_details': issues_details})
 
 # product checkout details
 def checkout(request):
@@ -247,7 +265,7 @@ def checkout(request):
     product_details = get_object_or_404(Products, pk=product_id)
     quantity = int(quantity)
     product_price = float(product_details.product_price)
-    total = product_price * quantity 
+    total = product_price * quantity
 
     return render(request, 'mkprofile/checkout.html', {'product_id': product_id, 'quantity': quantity, 'product_details': product_details, 'total': total, 'size': size})
 
@@ -292,4 +310,21 @@ def checkout_order(request):
         return redirect('https://flutterwave.com/pay/hpimxsvovffx') 
 
     return render(request, 'mkprofile/checkout.html')
+
+#news categories
+def news_by_category(request, category_name):
+    category = get_object_or_404(Category, name=category_name)
+    categories = Category.objects.all()
+    archives = NewsArchive.objects.all()
+    news_list = category.news.all()
+    return render(request, 'mkprofile/news_by_category.html', {'category': category, 'news_list': news_list, 'categories': categories, 'archives': archives})
+
+def news_by_year(request, year):
+    archive = get_object_or_404(NewsArchive, year=year)
+    news_list = archive.news.all()
+    archives = NewsArchive.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'mkprofile/news_by_year.html', {'archive': archive, 'news_list': news_list, 'archives': archives, 'categories': categories})
+    
+
 

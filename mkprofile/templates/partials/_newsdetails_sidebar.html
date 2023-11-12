@@ -1,0 +1,27 @@
+{% load static %}
+              
+<div class="widget widget-bg">
+  
+  <h5 class="wt-title">Categories</h5>
+
+  <ul class="custom-list type-1">
+
+    {% for category in categories %}
+        <li><h6><a href="{% url 'news_by_category' category_name=category.name %}">{{ category.name }}</a></h6></li>
+    {% endfor %}
+
+  </ul>
+
+</div>
+
+<div class="widget widget-bg">
+  
+  <h5 class="wt-title">Archives</h5>
+
+  <ul class="custom-list type-1">
+    {% for archive in archives %}
+        <li><h6><a href="{% url 'news_by_year' year=archive.year %}">{{ archive.year }}</a></h6></li>
+    {% endfor %}
+  </ul>
+
+</div>

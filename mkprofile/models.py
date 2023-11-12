@@ -80,6 +80,18 @@ class UserProfile(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 # news
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class NewsArchive(models.Model):
+    year = models.IntegerField(unique=True, null=True)
+
+    def __str__(self):
+        return str(self.year)
+
 class News(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     content = models.TextField(blank=True, null=True)
@@ -87,6 +99,8 @@ class News(models.Model):
     image = models.ImageField(upload_to='news_images/', blank=True, null=True)
     youtube_url = models.URLField(blank=True, null=True)
     vimeo = models.URLField(blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='news', null=True)
+    archive = models.ForeignKey(NewsArchive, on_delete=models.CASCADE, related_name='news', null=True)
 
     def __str__(self):
         return self.title
