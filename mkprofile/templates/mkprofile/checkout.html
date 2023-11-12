@@ -11,7 +11,7 @@
 
         <div class="container">
           
-          <h1 class="page-title">Cart</h1>
+          <h1 class="page-title">Checkout Page</h1>
 
           <ul class="breadcrumbs">
 
@@ -29,85 +29,8 @@
       <div class="page-content-wrap">
 
         <div class="container">
-        
-          <div class="content-element4">
-            
-            <div class="hidden-section">
-
-              <div class="account-action">Returning customer? <a class="invoker" href="#">Click here to login.</a></div>
-
-              <div class="content">
-
-                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-
-                <!-- - - - - - - - - - - - - - Login Form - - - - - - - - - - - - - - - - -->
-
-                <form class="contact-form type-2">
-
-                  <div class="row content-element3">
-                    <div class="col-sm-6">
-                      
-                      <label class="required">Username or email</label>
-                      <input type="text">
-                      
-                    </div>
-                    <div class="col-sm-6">
-                      
-                      <label class="required">Password</label>
-                      <input type="text">
-                      <a href="#" class="link-text2">Lost your password?</a>
-                      <footer class="login-form-footer input-wrapper style-2">
-
-                        <input type="checkbox" id="login-remember-me" class="type-2" name="login_remember_me">
-                        <label for="login-remember-me">Remember me</label>
-
-                      </footer>
-
-                    </div>
-                  </div>
-                  <div class="form-column-full">
-                    <a href="#" class="btn">Login</a>
-                  </div>
-
-                </form>
-
-                <!-- - - - - - - - - - - - - - End of Login Form - - - - - - - - - - - - - - - - -->
-
-              </div><!--/ .content -->
-
-            </div><!--/ .hidden-section -->
-
-            <div class="hidden-section">
-
-              <div class="account-action">Have a coupon? <a class="invoker" href="#">Click here to enter your code.</a></div>
-
-              <div class="content">
-
-                <div class="row">
-                  <div class="col-sm-6">
-
-                    <!-- - - - - - - - - - - - - - Coupon Form - - - - - - - - - - - - - - - - -->
-
-                    <div class="join-us style-3">
-                      <form class="join-form">
-                        <button type="submit" class="btn btn-style-4 btn-big f-right">Apply Coupon</button>
-                        <div class="input-holder">
-                          <input type="text" placeholder="Enter coupon code">
-                        </div>
-                      </form>
-                    </div>
-
-                    <!-- - - - - - - - - - - - - - End of Coupon Form - - - - - - - - - - - - - - - - -->
-
-                  </div>
-                </div>
-
-              </div><!--/ .content -->
-
-            </div><!--/ .hidden-section -->
-
-          </div>
-
+          <form method="post" action="{% url 'checkout_order' %}">
+            {% csrf_token %}
           <div class="content-element7">
             
             <div class="row">
@@ -115,19 +38,19 @@
                 
                 <h5>Billing Details</h5>
                   <div class="join-us style-4">
-                    <form class="join-form">
+                    <!-- <form class="join-form"> -->
                               
                       <div class="row">
                         <div class="col-sm-6">
                           
                           <label class="required">First Name</label>
-                          <input type="text">
+                          <input type="text" name="first_name">
                     
                         </div>
                         <div class="col-sm-6">
                           
                           <label class="required">Last Name</label>
-                          <input type="text">
+                          <input type="text" name="last_name">
                     
                         </div>
                       </div>
@@ -135,7 +58,7 @@
                         <div class="col-sm-12">
                           
                           <label>Company Name</label>
-                          <input type="text">
+                          <input type="text" name="company_name">
                     
                         </div>
                       </div>
@@ -143,7 +66,7 @@
                         <div class="col-sm-12">
                           
                           <label class="required">Adress</label>
-                          <input type="text" placeholder="Street address">
+                          <input type="text" placeholder="Street address" name="address">
                           <input type="text" placeholder="Apartment, suit, unit etc. (optional)">
                     
                         </div>
@@ -152,15 +75,7 @@
                         <div class="col-sm-12">
                           
                           <label class="required">Town / City</label>
-                          <input type="text">
-                    
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4">
-                          
-                          <label class="required">Postcode/ZIP</label>
-                          <input type="text">
+                          <input type="text" name="town_city">
                     
                         </div>
                       </div>
@@ -168,52 +83,35 @@
                         <div class="col-sm-6">
                           
                           <label class="required">Phone</label>
-                          <input type="text">
+                          <input type="text" name="phone">
                     
                         </div>
                         <div class="col-sm-6">
                           
                           <label class="required">Email address</label>
-                          <input type="text">
+                          <input type="text" name="email">
                     
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-
-                          <div class="input-wrapper style-2">
-                            <input type="checkbox" id="checkbox" class="type-2" name="checkbox">
-                            <label for="checkbox">Create an account</label>
-                          </div>
-
-                        </div>
-                      </div>
                     
-                    </form>
+                    <!-- </form> -->
                   </div>
 
               </div>
               <div class="col-md-6 col-sm-12">
-                
-                <div class="checkbox-title input-wrapper style-2">
-
-                  <input type="checkbox" id="bd-diff-address" class="type-2" name="bd-diff-address">
-                  <label for="bd-diff-address">Ship to a Different Address?</label>
-
-                </div>
-                <form>
+                <!-- <form> -->
                           
                   <label>Order Notes</label>
-                  <textarea rows="5" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                  <textarea rows="5" placeholder="Notes about your order, e.g. special notes for delivery." name="order_notes"></textarea>
 
-                </form>
+                <!-- </form> -->
 
               </div>
             </div>
 
           </div>
 
-          <div class="content-element3">
+          <!-- <div class="content-element3"> -->
             
             <h5>Your Order</h5>
             <div class="content-element4">
@@ -221,135 +119,49 @@
               <div class="shop-cart-form order-type table-type-1">
                 <table>
                   <thead>
-                    <tr>
-                      <th class="product-col">Product</th>
-                      <th class="total-col">Total</th>
-                    </tr>
+                      <tr>
+                          <th class="product-col">Product</th>
+                          <th class="product-col">Delivery</th>
+                          <th class="product-col">Quantity</th>
+                          <th class="product-col">Unit Cost</th>
+                      </tr>
                   </thead>
                   <tr>
-                    <td data-title="Product">
-
-                      <div class="product">
-
-                        <div class="product-description">
-
-                          <h6 class="product-name"><a href="#">Men’s T-shirt White</a></h6>
-
-                          <span class="product-size">Size: L</span>
-
-                        </div><!--/ .product-info -->
-
-                      </div>
-
-                    </td>
-           
-                    <td class="price">$100</td>
-                  </tr>
-                  <tr>
-                    <td data-title="Product">
-
-                      <div class="product">
-
-                        <div class="product-description">
-
-                          <h6 class="product-name"><a href="#">Cotton Tote Bag White</a></h6>
-
-                        </div><!--/ .product-info -->
-
-                      </div>
-
-                    </td>
-                    <td class="price">$35</td>
-                  </tr>
-                  <tr>
-                    <td class="order-total">
-                      <div>Cart subtotal:</div>
-                    </td>
-                    <td class="price"><b>$135</b></td>
-                  </tr>
-                  <tr>
-                    <td class="order-total">
-                      <div>Shipping:</div>
-                    </td>
-                    <td>
-                      <div class="input-wrapper">
-
-                        <input type="radio" checked="" name="radio-1" id="radio-1">
-                        <label for="radio-1">Free shipping</label>
-
-                      </div>
-                      <div class="input-wrapper">
-
-                        <input type="radio" name="radio-1" id="radio-2">
-                        <label for="radio-2">Flat shipping</label>
-
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="total-cell2">
-                    <td class="order-total">
-                      Order Total:
-                    </td>
-                    <td class="price">$135</td>
-                  </tr>
-                </table>
+                      <td data-title="Product">
+                          <div class="product">
+                              <div class="product-description">
+                                  <h6 class="product-name"><a href="#">{{ product_details.product_name }}</a></h6>
+                                  <span class="product-size">Size: {{ size }}</span>
+                                  <input type="hidden" name="product_name" value="{{ product_details.product_name }}">
+                                  <input type="hidden" name="size" value="{{ size }}">
+                              </div>
+                          </div>
+                      </td>
+                      <td class="price">FREE</td>
+                      <input type="hidden" name="delivery_cost" value="FREE">
+                      <td class="price">{{ quantity }}</td>
+                      <input type="hidden" name="quantity" value="{{ quantity }}">
+                      <td class="price">UGX {{ product_details.product_price }}</td>
+                      <input type="hidden" name="unit_cost" value="{{ product_details.product_price }}">
+                    </tr>
+                    <tr class="total-cell2">
+                      <td class="order-total">Order Total:</td>
+                      <td class="price">UGX {{ total }}</td>
+                      <input type="hidden" name="total_cost" value="{{ total }}">                     
+                    </tr>
+              </table>              
               </div>
 
             </div>
 
             <div class="content-element7">
-              
-              <ul class="custom-list payment-option">
-
-                <li>
-
-                  <div class="input-wrapper style-2">
-                    
-                    <input type="radio" checked="" name="pm_payment_method" id="pm-cheque-payment" value="pm_cheque_payment">
-                    <label for="pm-cheque-payment">Cheque Payment</label>
-
-                  </div><!--/ .input-wrapper -->
-
-                  <div class="payment-desc">
-                    <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / Country, Store Postcode.</p>
-                  </div>
-
-                </li>
-
-                <li>
-
-                  <div class="input-wrapper style-2">
-                    
-                      <input type="radio" name="pm_payment_method" id="pm-paypal" value="pm_paypal">
-                      <label for="pm-paypal">PayPal</label>
-                      <a href="#">What is PayPal?</a>
-
-                    </div><!--/ .input-wrapper -->
-
-                    <div class="payment-desc">
-
-                      <img src="{% static 'images/paypal.png' %}" alt="">
-
-                    </div>
-
-                </li>
-
-                <li>
-                  
-                  <div class="input-wrapper style-2">
-                    <input type="checkbox" id="checkbox2" class="type-2" name="checkbox2">
-                    <label for="checkbox2">I’ve read and accept the <a href="#" class="link-text2 required">Terms & Conditions</a></label>
-                  </div>
-
-                </li>
-
-              </ul>
 
             </div>
 
-            <a href="{% url 'myAccount' %}" class="btn btn-style-6 btn-big">Place Order</a>
+            <button type="submit" class="btn btn-style-6 btn-big">Place Order</button>
 
-          </div>
+          <!-- </div> -->
+        </form>
 
         </div>
 

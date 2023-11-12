@@ -1,0 +1,88 @@
+{% extends 'layout/events_app.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block content %}
+      
+      <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
+
+      <div class="breadcrumbs-wrap with-bg">
+
+        <div class="container">
+          
+          <h1 class="page-title">{{ archive.year }} NEWS</h1>
+
+          <ul class="breadcrumbs">
+
+            <li><a href="index.html">Home</a></li>
+            <li>{{ archive.year }}</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- - - - - - - - - - - - - end Breadcrumbs - - - - - - - - - - - - - - - -->
+
+      <div class="page-content-wrap">
+        
+        <div class="container">
+          
+          <div class="row">
+            <main id="main" class="col-md-8 col-sm-12">
+            {% if news_list %}
+                <div class="events-holder">
+                    {% for entry in news_list %}
+                        <div class="event-item">
+                        <div class="entry-attachment">
+                            {% if entry.vimeo %}
+                                <div class="responsive-iframe">
+                                <iframe src="{{ entry.vimeo }}?title=0&byline=0&portrait=0&color=dedede" allowfullscreen=""></iframe>
+                                </div>
+                            {% elif entry.youtube_url %}
+                                <div class="responsive-iframe">
+                                    <iframe src="{{ entry.youtube_url }}"></iframe>
+                                </div>
+                            {% elif entry.image %}
+                                <img src="{{ entry.image.url }}" alt="{{ entry.title }}">
+                            {% endif %}
+                        </div>
+                        
+                        <div class="event-date">
+                            <div class="event-month">{{ entry.date|date:"M" }}</div>
+                            <div class="event-day">{{ entry.date|date:"d" }}</div>
+                        </div>
+                        <div class="event-info">
+                            <h4 class="event-link"><a href="#">{{ entry.title }}</a></h4>
+                            <p>{{ entry.content }}</p>
+                            <a href="{% url 'news_details' entry.id %}" class="info-btn">Read More</a>
+                        </div>
+                        </div>
+                    {% empty %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No archive news for the year {{ archive.year }}.</p>
+            {% endif %}
+
+              <ul class="pagination">
+                <li><a href="#" class="prev-page"></a></li>
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="next-page"></a></li>
+              </ul>
+
+            </main>
+            <aside id="sidebar" class="col-md-4 col-sm-12">
+             {% include 'partials/_sidebar.html' %}
+            </aside>
+          </div>
+
+        </div>
+
+      </div>
+
+{% endblock %}

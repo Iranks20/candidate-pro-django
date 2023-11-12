@@ -8,20 +8,52 @@
 
         <div class="row flex-row">
             <div class="col-md-8">
-            
-            <div class="bg-col-1">
-                <h5>Join Our Team</h5>
-                <form id="newsletter" class="join-form">
-                <button type="submit" class="btn btn-style-4 btn-big f-right" data-type="submit">Sign Up</button>
-                <div class="input-holder">
-                    <input type="email" name="newsletter-email" placeholder="Email address">
-                    <input type="text" placeholder="Zip code">
+                <div class="bg-col-1">
+                    <h5>Join Our Team</h5>
+                    <form class="join-form" id="subscribeForm">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-style-4 btn-big f-right" onclick="subscriber()">Sign Up</button>
+                        <div class="input-holder">
+                            <input type="email" name="newsletter-email" id="newsEmail" placeholder="Email address" required>
+                        </div>
+                    </form>
                 </div>
-                </form>
             </div>
-
-            </div>
-            <a href="#" class="col-md-4">
+            
+            <script>
+                function subscriber() {
+                    var email = $('#newsEmail').val();
+                    if (!email) {
+                    alert('Please Fill in your email address.');
+                    return;
+                    }
+                    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "subscribe" %}',
+                        data: {
+                            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+                            'newsletter-email': email,
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                alert(response.message);
+                            } else {
+                                alert('Error: ' + response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('An error occurred: ' + xhr.responseText);
+                        }
+                    });
+                }
+            </script>            
+            
+            <a href="https://flutterwave.com/donate/gvfkc19owrqk" class="col-md-4">
             
             <div class="bg-col-2">
                 <div class="align-center">
@@ -45,12 +77,12 @@
             
             <div class="widget">
                 
-                <a href="#" class="logo"><img src="{% static 'images/logo2.png' %}" alt=""></a>
-                <p>Adam Russell for Congress <br>
-                PO Box 3740, Austin, TX, 78741</p>
+                <img src="{% static 'images/logo-new.png' %}" alt="" style="max-width: 300px; height: auto;">
+                <p>Gen MK for President <br>
+                PO Box 0000, KLA</p>
                 <p>Phone: <span>(932) 733-3390</span> <br>
-                E-mail: <a href="mailto:#" class="link-text">info@adamrussell.com</a></p>
-                <a href="#" class="link-text">Privacy Policy</a>
+                E-mail: <a href="mailto:#" class="link-text">info@GenMK.com</a></p>
+                <!-- <a href="#" class="link-text">Privacy Policy</a> -->
 
             </div>
 
@@ -78,13 +110,13 @@
             
             <div class="widget">
                 
-                <h6 class="widget-title">Connect With Adam</h6>
+                <h6 class="widget-title">Connect With Gen MK</h6>
 
                 <ul class="social-icons">
 
-                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                <li><a href="#"><i class="icon-instagram-5"></i></a></li>
+                <li><a href="https://www.facebook.com/p/Muhoozi-Kainerugaba-100050222690772/"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://x.com/mkainerugaba?t=0YPAfQz_v5Y9Tia7-ji8-g&s=09"><i class="icon-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/mkainerugaba/?utm_source=ig_web_button_share_sheet"><i class="icon-instagram-5"></i></a></li>
                 <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                 <li><a href="#"><i class="icon-flickr"></i></a></li>
                 <li><a href="#"><i class="icon-snapchat-ghost"></i></a></li>
@@ -97,8 +129,8 @@
                 
                 <div class="copyright">
                 
-                <div class="paid-by">Paid for by Friends of Adam Russell</div>
-                <p>Copyright © 2017 Adam Russell for Congress. <br> All Rights Reserved.</p>
+                <div class="paid-by">Paid for by Friends of Gen MK</div>
+                <p>Copyright © 2026 Gen MK for President. <br> All Rights Reserved.</p>
 
                 </div>
 

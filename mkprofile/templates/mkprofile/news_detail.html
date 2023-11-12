@@ -1,0 +1,73 @@
+{% extends 'layout/events_app.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block content %}
+      
+      <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
+
+      <div class="breadcrumbs-wrap with-bg">
+
+        <div class="container">
+          
+          <h1 class="page-title">NEWS DETAILS</h1>
+
+          <ul class="breadcrumbs">
+
+            <li><a href="index.html">Home</a></li>
+            <li>News Details</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- - - - - - - - - - - - - end Breadcrumbs - - - - - - - - - - - - - - - -->
+
+      <div class="page-content-wrap">
+        
+        <div class="container">
+          
+          <div class="row">
+            <main id="main" class="col-md-8 col-sm-12">
+              
+              <div class="events-holder">
+                <div class="event-item">
+                  <div class="entry-attachment">
+                    {% if  news_details.vimeo %}
+                        <div class="responsive-iframe">
+                          <iframe src="{{ news_details.vimeo }}?title=0&byline=0&portrait=0&color=dedede" allowfullscreen=""></iframe>
+                        </div>
+                    {% elif  news_details.youtube_url %}
+                        <div class="responsive-iframe">
+                            <iframe src="{{ news_details.youtube_url }}"></iframe>
+                        </div>
+                    {% elif  news_details.image %}
+                        <img src="{{ news_details.image.url }}" alt="{{ entry.title }}">
+                    {% endif %}
+                </div>
+                
+                  <div class="event-date">
+                    <div class="event-month">{{ news_details.date|date:"M" }}</div>
+                    <div class="event-day">{{ news_details.date|date:"d" }}</div>
+                  </div>
+                  <div class="event-info">
+                    <h4 class="event-link"><a href="#">{{ news_details.title }}</a></h4>
+                    <p>{{ news_details.content }}</p>
+                  </div>
+                </div>
+              </div>
+
+            </main>
+            <aside id="sidebar" class="col-md-4 col-sm-12">
+             {% include 'partials/_newsdetails_sidebar.html' %}
+            </aside>
+          </div>
+
+        </div>
+
+      </div>
+
+{% endblock %}

@@ -42,7 +42,7 @@
                     <figure><a href="#"><img src="{{ priorityexample.priorities_image.url }}" alt=""></a></figure>
                     <h5><a href="#">{{ priorityexample.priorities_heading }}</a></h5>
                     <p>{{ priorityexample.priorities_description }}</p>
-                    <a href="#" class="info-btn">Read More</a>
+                    <a href="{% url 'issues_details' priorityexample.id %}" class="info-btn">Read More</a>
 
                   </div>
                 </div>
@@ -62,83 +62,33 @@
                 
                 <div class="accordion">
 
-                  <!--accordion item-->           
+                  <!--accordion item-->
+                  {% for otherpriority in otherpriorities %}           
                   <div class="accordion-item">
-                    <h6 class="a-title active">Protecting Seniors and Consumers</h6>
+                    <h6 class="a-title active">{{ otherpriority.title }}</h6>
                     <div class="a-content">
-                      <p>Donec eget tellus non erat lacinia. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. Mauris accumsan nulla vel diam. </p>
-                      <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. </p>
+                      <p>{{ otherpriority.description }}</p>
                     </div>
                   </div>
-
-                  <!--accordion item-->           
-                  <div class="accordion-item">
-                    <h6 class="a-title">Promoting Public Safety </h6>
-                    <div class="a-content">
-                      <p>Donec eget tellus non erat lacinia. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. Mauris accumsan nulla vel diam. </p>
-                      <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. </p>
-                    </div>
-                  </div>
-
-                  <!--accordion item-->           
-                  <div class="accordion-item">
-                    <h6 class="a-title">Preserving Clean Air and Wate</h6>
-                    <div class="a-content">
-                      <p>Donec eget tellus non erat lacinia. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. Mauris accumsan nulla vel diam. </p>
-                      <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. </p>
-                    </div>
-                  </div>
-
+                  {% endfor %}
                 </div>
 
               </div>
               <div class="col-md-4 col-sm-12">
                 
                 <div class="action-widget style-2 type-vr">
-          
                   <!-- action-item -->
 
-                  <a href="#" class="action-item register">
-                    <i class="icon icon-basic-todo-txt"></i>
-                    <h5 class="action-title"><b>Register to vote</b></h5>
-                    <p>Submit your application</p>
-                  </a>
-
-                  <!-- action-item -->
-
-                  <a href="#" class="action-item get-involved">
+                  <a href="{% url 'join' %}" class="action-item get-involved">
                     <i class="icon icon-ecommerce-megaphone"></i>
                     <h5 class="action-title"><b>Get Involved</b></h5>
                     <p>Become a volunteer</p>
-                  </a>
-
-                  <!-- action-item -->
-
-                  <a href="#" class="action-item event">
-                    <i class="icon icon-basic-mail-open-text"></i>
-                    <h5 class="action-title"><b>Vote By Mail</b></h5>
-                    <p>Request your ballot</p>
                   </a>
 
                 </div>
 
               </div>
             </div>
-
-          </div>
-
-          <div class="content-element2">
-                    
-            <span class="share-title">Share this:</span>
-            <ul class="social-icons share">
-          
-              <li><a href="#" class="sh-facebook"><i class="icon-facebook"></i>Facebook</a></li>
-              <li><a href="#" class="sh-twitter"><i class="icon-twitter"></i>Twitter</a></li>
-              <li><a href="#" class="sh-google"><i class="icon-gplus-3"></i>Google Plus</a></li>
-              <li><a href="#" class="sh-pinterest"><i class="icon-pinterest"></i>Pinterest</a></li>
-              <li><a href="#" class="sh-mail"><i class="icon-mail"></i>Email to a Friend</a></li>
-
-            </ul>
 
           </div>
 

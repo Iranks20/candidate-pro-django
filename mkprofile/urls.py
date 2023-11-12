@@ -9,13 +9,22 @@ urlpatterns = [
     path('news/', views.news, name='news'),
     path('issues/', views.issues, name='issues'),
     path('events/', views.events, name='events'),
+    path('filter_events/', views.filter_events, name='filter_events'),
     path('product-category/', views.productCategory, name='productCategory'),
-    path('product-page/', views.productPage, name='productPage'),
+    path('product-page/<int:product_id>/', views.productPage, name='productPage'),
     path('shop-cart/', views.shopCart, name='shopCart'),
     path('checkout/', views.checkout, name='checkout'),
     path('myaccount/', views.myAccount, name='myAccount'),
     path('join/', views.join, name='join'),
+    path('mission/', views.mission, name='mission'),
     path('contact/', views.contact, name='contact'),
+    path('signup/', views.signup, name='signup'),
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('checkout_order/', views.checkout_order, name='checkout_order'),
+    path('news_details/<int:news_id>/', views.news_details, name='news_details'),
+    path('issues_details/<int:issues_id>/', views.issues_details, name='issues_details'),
+    path('news/category/<str:category_name>/', views.news_by_category, name='news_by_category'),
+    path('news/archive/<int:year>/', views.news_by_year, name='news_by_year'),
 
 
 ]

@@ -29,227 +29,30 @@
       <div class="page-content-wrap">
         
         <div class="container">
-          
           <div class="tribe-events-bar">
-            
             <div class="row">
               <div class="col-md-10">
-                
                 <div class="join-us style-4">
-                    
-                  <form class="join-form">
+                  <form class="join-form" method="post" action="{% url 'filter_events' %}">
+                    {% csrf_token %}
                     <div class="input-holder input-cols">
                       <div class="input-col">
                         <label>Date</label>
-                        <input type="text" placeholder="2018-07-24">
-                      </div>
-                      <div class="input-col">
-                        <label>Search</label>
-                        <input type="text" placeholder="Search the site">
-                      </div>
-                      <div class="input-col">
-                        <label>Near</label>
-                        <input type="text" placeholder="Search the site">
-                      </div>
+                        <input type="month" name="selected_month" value="{{ current_month }}">
+                      </div>                    
                       <div class="input-col">
                         <button type="submit" class="btn btn-style-3 btn-big">Find Events</button>
                       </div>
                     </div>
                   </form>
-        
                 </div>
-        
-              </div>
-              <div class="col-md-2">
-                
-                <label>View as</label>
-                  <div class="custom-select">
-                    <div class="select-title">Day</div>
-                    <ul id="menu-type" class="select-list"></ul>
-                    <select class="hide">
-                      <option value="menu">List</option>
-                      <option value="menu">Month</option>
-                      <option value="menu">Week</option>
-                      <option value="menu">Map</option>
-                      <option value="menu">Photo</option>
-                    </select>
-                  </div>
-        
               </div>
             </div>
-        
           </div>
-        
           <div class="content-element">
-            <div class="tribe-events-filters">
-              
-              <a href="#javascript;" id="tribe_events_filters_toggle" class="info-btn">Show Filters</a>
-        
-              <div class="tribe-events-filters-content">
-                
-                <div class="flex-row flex-justify">
-                  
-                  <label class="tribe-events-filters-label">Narrow Your Results</label>
-        
-                  <div id="tribe_events_filter_control" class="tribe-filter-control">
-                    <a href="#javascript;" id="tribe_events_filters_close_filters" class="info-btn" href="#" data-state="Show Advanced Filters">Collapse Filters</a>
-                    <a href="#javascript;" id="tribe_events_filters_reset" href="#" class="info-btn">Reset Filters</a>
-                  </div>
-        
-                </div>
-        
-                <form>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Featured Events</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type2" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Day</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type3" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Time</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type4" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Event Category</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type5" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>    
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Organizers</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type6" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Venues</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type7" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">Country</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type8" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">State/Province</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type9" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tribe_events_filter_item">
-                    <h6 class="tribe-events-filters-group-heading">City</h6>
-        
-                    <div class="tribe-events-filter-group tribe-events-filter-checkboxes">
-                      <div class="custom-select">
-                        <div class="select-title">Select</div>
-                        <ul id="menu-type10" class="select-list"></ul>
-                        <select class="hide">
-                          <option value="menu">Option 1</option>
-                          <option value="menu">Option 2</option>
-                          <option value="menu">Option 3</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-        
-              </div>
-            
-            </div>
-        
-          </div>
-        
-          <div class="content-element">
-            
             <div class="content-element4">
-        
-              <h3>Events for July 2018</h3>
-        
+              <h3>Events for {{ selected_month|date:"F Y" }}</h3>
             </div>
-        
             <div class="responsive-table content-element4">
               <table class="tribe-events-calendar">
                 <thead>
@@ -264,347 +67,39 @@
                   </tr>
                 </thead>
                 <tr>
-                  <td data-title="Sunday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">1</a>
-                    </div>
-                  </td>
-                  <td data-title="Monday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">2</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Dallas Deputy Voter Registrar Training</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
+                  {% for day in days %}
+                    <td data-title="{{ day.day|date:'l' }}">
+                      <div class="tribe-events-daynum">
+                        <a href="#">{{ day.day.day }}</a>
                       </div>
-                    </div>
-                  </td>
-                  <td data-title="Tuesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">3</a>
-                    </div>
-                  </td>
-                  <td data-title="Wednesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">4</a>
-                    </div>
-                  </td>
-                  <td data-title="Thursday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">5</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Dinner with Linda Russell</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
+                      {% for event in day.events %}
+                        <div class="tribe-events-category-tech-events">
+                          <a href="#">{{ event.title }}</a>
+                          <h6 href="#"><b>{{ event.location }}</b></h6>
+                          <div class="tribe-events-tooltip">
+                            <header>
+                              <h6>{{ event.title }}</h6>
+                              <!-- <h8>{{ event.location }}</h8> -->
+                              <time datetime="{{ event.date|date:'Y-m-d' }}">{{ event.date|date:"F d" }}, {{ event.location }}</time>
+                            </header>
+                            <div class="clearfix">
+                              <img src="{{ event.image.url }}" alt="" class="alignleft">
+                              <p>{{ event.description }}</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Central Texas Regional Training</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Friday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">6</a>
-                    </div>
-                  </td>
-                  <td data-title="Saturday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">7</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-title="Sunday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">8</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Meet our Democratic State Chair</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Monday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">9</a>
-                    </div>
-                  </td>
-                  <td data-title="Tuesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">10</a>
-                    </div>
-                  </td>
-                  <td data-title="Wednesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">11</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Meet Adam Russell</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Thursday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">12</a>
-                    </div>
-                  </td>
-                  <td data-title="Friday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">13</a>
-                    </div>
-                  </td>
-                  <td data-title="Saturday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">14</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-title="Sunday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">15</a>
-                    </div>
-                  </td>
-                  <td data-title="Monday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">16</a>
-                    </div>
-                  </td>
-                  <td data-title="Tuesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">17</a>
-                    </div>
-                  </td>
-                  <td data-title="Wednesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">18</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Meet Adam Russell</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Thursday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">19</a>
-                    </div>
-                  </td>
-                  <td data-title="Friday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">20</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Deputy Voter Registrar Training</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Saturday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">21</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-title="Sunday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">22</a>
-                    </div>
-                  </td>
-                  <td data-title="Monday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">23</a>
-                    </div>
-                  </td>
-                  <td data-title="Tuesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">24</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Dinner with Adam Russell</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Adam Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Central Texas Regional Training</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Wednesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">25</a>
-                    </div>
-                  </td>
-                  <td data-title="Thursday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">26</a>
-                    </div>
-                  </td>
-                  <td data-title="Friday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">27</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Deputy Voter Registrar Training</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Saturday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">28</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-title="Sunday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">29</a>
-                    </div>
-                  </td>
-                  <td data-title="Monday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">30</a>
-                    </div>
-                    <div class="tribe-events-category-tech-events">
-                      <a href="#">Meet Linda Russell</a>
-                      <div class="tribe-events-tooltip">
-                        <header>
-                          <h6>Dinner with Linda Russell</h6>
-                          <time datetime="2018-07-27">July 27 @ 6:30 PM - 8:00 PM</time>
-                        </header>
-                        <div class="clearfix">
-                          <img src="{% static 'images/200x145_img1.jpg' %}" alt="" class="alignleft">
-                          <p>Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna [...]</p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-title="Tuesday">
-                    <div class="tribe-events-daynum">
-                      <a href="#">31</a>
-                    </div>
-                  </td>
-                  <td data-title="Wednesday">
-                    <div class="tribe-events-daynum next-month">
-                      <a href="#">1</a>
-                    </div>
-                  </td>
-                  <td data-title="Thursday">
-                    <div class="tribe-events-daynum next-month">
-                      <a href="#">2</a>
-                    </div>
-                  </td>
-                  <td data-title="Friday">
-                    <div class="tribe-events-daynum next-month">
-                      <a href="#">3</a>
-                    </div>
-                  </td>
-                  <td data-title="Saturday">
-                    <div class="tribe-events-daynum next-month">
-                      <a href="#">4</a>
-                    </div>
-                  </td>
+                      {% endfor %}
+                    </td>
+                    {% if forloop.counter|divisibleby:7 %}
+                      </tr><tr>
+                    {% endif %}
+                  {% endfor %}
                 </tr>
               </table>
             </div>
-
-            <div class="page-nav">
-              <div class="flex-row flex-justify">
-                <a href="#" class="info-btn prev-btn">Previous Events</a>
-                <a href="#" class="info-btn exp-btn">Export Events</a>
-                <a href="#" class="info-btn next-btn">Next Events</a>
-              </div>
-            </div>
-        
           </div>
+        </div>       
         
-        </div>
 
       </div>
 

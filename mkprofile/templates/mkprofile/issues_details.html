@@ -1,0 +1,57 @@
+{% extends 'layout/events_app.html' %}
+{% load i18n %}
+
+{% load static %}
+
+{% block content %}
+      
+      <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
+
+      <div class="breadcrumbs-wrap with-bg">
+
+        <div class="container">
+          
+          <h1 class="page-title">ISSUES DETAILS</h1>
+
+          <ul class="breadcrumbs">
+
+            <li><a href="index.html">Home</a></li>
+            <li>Issues Details</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- - - - - - - - - - - - - end Breadcrumbs - - - - - - - - - - - - - - - -->
+
+      <div class="page-content-wrap">
+        
+        <div class="container">
+          
+          <div class="row">
+            <main id="main" class="col-md-8 col-sm-12">
+              
+              <div class="events-holder">
+                <div class="event-item">
+                  <div class="entry-attachment">
+                        <img src="{{ issues_details.priorities_image.url }}" alt="{{ entry.title }}">
+                </div>
+                  <div class="event-info">
+                    <h4 class="event-link"><a href="#">{{ issues_details.priorities_heading}}</a></h4>
+                    <p>{{ issues_details.priorities_description }}</p>
+                  </div>
+                </div>
+              </div>
+            </main>
+            <aside id="sidebar" class="col-md-4 col-sm-12">
+             {% include 'partials/_newsdetails_sidebar.html' %}
+            </aside>
+          </div>
+
+        </div>
+
+      </div>
+
+{% endblock %}
